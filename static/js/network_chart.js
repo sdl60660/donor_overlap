@@ -155,7 +155,7 @@ NetworkChart.prototype.updateVis = function() {
         .force('y', d3.forceY(vis.height / 2).strength(0.03))
         .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 320 - 2.5*d.pct_val).strength(d => d.pct_val / 500))
         .force("repelForce", d3.forceManyBody().strength(-570).distanceMax(450))
-        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(4))
+        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(4).strength(1.0))
         .force("center", d3.forceCenter(vis.width / 2, vis.height / 2));
 
 
