@@ -8,7 +8,6 @@ const phoneBrowsingCutoff = 1100;
 // Datasets
 let overlapNodes = null;
 let overlapLinks = null;
-let candidateMeta = null;
 let candidateIdNames = null;
 
 let overlapThreshold = 7;
@@ -217,7 +216,6 @@ function main() {
     const promises = [
         d3.json("static/data/candidate_overlap_links.json"),
         d3.json("static/data/candidate_overlap_nodes.json"),
-        d3.csv("static/data/candidates_meta.csv"),
         d3.json("static/data/candidate_id_name_lookup.json")
     ];
 
@@ -236,8 +234,7 @@ function main() {
 
         overlapLinks = allData[0];
         overlapNodes = allData[1];
-        candidateMeta = allData[2];
-        candidateIdNames = allData[3];
+        candidateIdNames = allData[2];
 
         $(".loadring-container")
             .hide();

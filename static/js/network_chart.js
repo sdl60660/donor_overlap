@@ -254,21 +254,21 @@ NetworkChart.prototype.updateVis = function() {
 
         vis.nodes
             .attr("cx", d => {
-                let radius = vis.circleRadius(d.total_donors) + 1;
+                let radius = vis.circleRadius(d.total_donors) + 2;
                 return d.x = Math.max(radius, Math.min(vis.width - radius, d.x));
             })
             .attr("cy", d => {
-                let radius = vis.circleRadius(d.total_donors) + 1;
+                let radius = vis.circleRadius(d.total_donors) + 2;
                 return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
 
         vis.images
             .attr("cx", d => {
-                let radius = vis.circleRadius(d.total_donors) + 1;
+                let radius = vis.circleRadius(d.total_donors) + 2;
                 return d.x = Math.max(radius, Math.min(vis.width - radius, d.x));
             })
             .attr("cy", d => {
-                let radius = vis.circleRadius(d.total_donors) + 1;
+                let radius = vis.circleRadius(d.total_donors) + 2;
                 return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
         });

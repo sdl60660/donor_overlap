@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47d53e8f-c72e-45b8-bcd8-947fc91f128b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
       <change beforePath="$PROJECT_DIR$/static/js/main.js" afterPath="$PROJECT_DIR$/static/js/main.js" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change beforePath="$PROJECT_DIR$/static/js/network_chart.js" afterPath="$PROJECT_DIR$/static/js/network_chart.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/static/js/nodelink.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="287">
-              <caret line="120" column="45" lean-forward="false" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+              <caret line="120" column="62" lean-forward="false" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
               <folding>
                 <marker date="1600893748839" expanded="true" signature="887:906" ph="..." />
                 <marker date="1600893748839" expanded="true" signature="1037:1050" ph="..." />
@@ -31,30 +32,30 @@
       <file leaf-file-name="network_chart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/network_chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+            <state relative-caret-position="167">
+              <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
               <folding>
-                <marker date="1600976658042" expanded="true" signature="758:777" ph="..." />
-                <marker date="1600976658042" expanded="true" signature="913:926" ph="..." />
-                <marker date="1600976658042" expanded="true" signature="9159:9170" ph="..." />
+                <marker date="1600979668095" expanded="true" signature="758:777" ph="..." />
+                <marker date="1600979668095" expanded="true" signature="913:926" ph="..." />
+                <marker date="1600979668095" expanded="true" signature="9159:9170" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="238" column="35" lean-forward="true" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
+            <state relative-caret-position="244">
+              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
               <folding>
-                <marker date="1600978990454" expanded="true" signature="5594:5692" ph="..." />
+                <marker date="1600979706611" expanded="true" signature="5568:5666" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="158">
@@ -85,8 +86,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+            <state relative-caret-position="566">
+              <caret line="107" column="9" lean-forward="true" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -103,9 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nodeangle</find>
-      <find>forceX</find>
-      <find>vx</find>
       <find>nodelink</find>
       <find>d3.forcelink</find>
       <find>network-tile</find>
@@ -127,12 +125,15 @@
       <find>h1</find>
       <find>border</find>
       <find>98vw</find>
-      <find>iterations</find>
       <find>tick</find>
       <find>slider</find>
       <find>network-wra</find>
-      <find>hr&gt;</find>
       <find>loadring</find>
+      <find>hr&gt;</find>
+      <find>iterations</find>
+      <find>candidatemeta</find>
+      <find>border-radi</find>
+      <find>let rad</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,10 +144,10 @@
       <list>
         <option value="$PROJECT_DIR$/static/js/lodash.js" />
         <option value="$PROJECT_DIR$/static/js/nodelink.js" />
-        <option value="$PROJECT_DIR$/static/js/network_chart.js" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
-        <option value="$PROJECT_DIR$/static/js/main.js" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/static/js/network_chart.js" />
+        <option value="$PROJECT_DIR$/static/js/main.js" />
       </list>
     </option>
   </component>
@@ -354,48 +355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/network_chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding>
-            <marker date="1600976658042" expanded="true" signature="758:777" ph="..." />
-            <marker date="1600976658042" expanded="true" signature="913:926" ph="..." />
-            <marker date="1600976658042" expanded="true" signature="9159:9170" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/nodelink.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="120" column="45" lean-forward="false" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
-          <folding>
-            <marker date="1600893748839" expanded="true" signature="887:906" ph="..." />
-            <marker date="1600893748839" expanded="true" signature="1037:1050" ph="..." />
-            <marker date="1600893748839" expanded="true" signature="1407:1420" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="238" column="35" lean-forward="true" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
-          <folding>
-            <marker date="1600978990454" expanded="true" signature="5594:5692" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -418,6 +377,48 @@
             <element signature="n#style#0;n#div#6;n#body#0;n#!!top" expanded="true" />
             <marker date="1600979030003" expanded="true" signature="4247:5286" ph="..." />
             <marker date="1600979030003" expanded="false" signature="4361:5263" ph="data:" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/nodelink.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="120" column="62" lean-forward="false" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
+          <folding>
+            <marker date="1600893748839" expanded="true" signature="887:906" ph="..." />
+            <marker date="1600893748839" expanded="true" signature="1037:1050" ph="..." />
+            <marker date="1600893748839" expanded="true" signature="1407:1420" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="107" column="9" lean-forward="true" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/network_chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
+          <folding>
+            <marker date="1600979668095" expanded="true" signature="758:777" ph="..." />
+            <marker date="1600979668095" expanded="true" signature="913:926" ph="..." />
+            <marker date="1600979668095" expanded="true" signature="9159:9170" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <marker date="1600979706611" expanded="true" signature="5568:5666" ph="..." />
           </folding>
         </state>
       </provider>
