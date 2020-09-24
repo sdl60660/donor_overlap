@@ -32,7 +32,7 @@ NetworkChart.prototype.initVis = function() {
         .html(function(d) {
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
-            outputString += `<span>Identified Donors: </span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
+            outputString += `<span>Known Donors: </span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
 
             outputString += '</div>';
 
