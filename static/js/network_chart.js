@@ -32,7 +32,7 @@ NetworkChart.prototype.initVis = function() {
         .html(function(d) {
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
-            outputString += `<span>Identified Donors:</span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
+            outputString += `<span>Identified Donors: </span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
 
             outputString += '</div>';
 
@@ -107,6 +107,8 @@ NetworkChart.prototype.initVis = function() {
         .attr("stroke-width", 1.5)
         .selectAll("circle");
 
+    vis.decayVal = 0.012;
+
     vis.wrangleData();
 };
 
@@ -129,7 +131,7 @@ NetworkChart.prototype.wrangleData = function() {
     // Determine node layout (using multiple rings, if necessary)
     const linkDistance = 620;
 
-    // vis.simulation = d3.forceSimulation(vis.overlapNodes)
+    // vis.simulation = d3.forceSimulation(vis.nodeData)
     //     .force("charge", d3.forceManyBody().strength(-450))
     //     .force("charge", d3.forceCollide().radius(d => vis.circleRadius(d.radiusVal)))
     //     .force("center", d3.forceCenter(vis.width / 2, vis.height / 2))
@@ -145,12 +147,14 @@ NetworkChart.prototype.updateVis = function() {
     const vis = this;
 
     vis.simulation = d3.forceSimulation(vis.nodeData)
-        .force('x', d3.forceX(d => d.party === "REP" ? vis.width*0.67 : vis.width*0.33).strength(0.035))
+        .alphaDecay(vis.decayVal)
+        .force('x', d3.forceX(d => d.party === "REP" ? vis.width*0.67 : vis.width*0.33)
+            .strength(d => d.party === "REP" ? 0.035 : 0.025))
         // .force('x', d3.forceX(vis.width / 2).strength(0.035))
         // .force('centerX', d3.forceX(vis.width / 2).strength(0.02))
-        .force('y', d3.forceY(vis.height / 2).strength(0.025))
-        .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 350 - 2.5*d.pct_val).strength(d => d.pct_val / 500))
-        .force("repelForce", d3.forceManyBody().strength(-500).distanceMax(450))
+        .force('y', d3.forceY(vis.height / 2).strength(0.03))
+        .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 320 - 2.5*d.pct_val).strength(d => d.pct_val / 500))
+        .force("repelForce", d3.forceManyBody().strength(-570).distanceMax(450))
         .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(4))
         .force("center", d3.forceCenter(vis.width / 2, vis.height / 2));
 
@@ -180,6 +184,7 @@ NetworkChart.prototype.updateVis = function() {
         .data(vis.nodeData, (d) => d.id)
         .join(
             enter => enter.append("circle")
+                .attr("x", d => d.party === "REP" ? 0.67*vis.width : 0.33*vis.width)
                 .attr("class", "candidate-images images")
                 .attr("r", d => vis.circleRadius(d.total_donors))
                 .style("fill", d => `url(#network-image-${d.id})`),
@@ -229,7 +234,7 @@ NetworkChart.prototype.updateVis = function() {
                         .style("opacity", 1);
 
                 })
-                .attr("cx", vis.width/2)
+                .attr("x", d => d.party === "REP" ? 0.67*vis.width : 0.33*vis.width)
                 .attr("cy", vis.height/2)
                 .style("stroke-width", 4)
                 .style("stroke", d => partyColor(d.party))
@@ -272,6 +277,8 @@ NetworkChart.prototype.updateVis = function() {
                 return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
         });
+
+    vis.decayVal = 0.0228;
 
     vis.simulation
         .restart();
