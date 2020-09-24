@@ -242,10 +242,7 @@ function main() {
         $(".loadring-container")
             .hide();
 
-        $("#intro-wrapper")
-            .css("visibility", "visible");
-
-        $(".downArrow")
+        $("#intro-wrapper, #nodelink-wrapper, #network-wrapper, .footer")
             .css("visibility", "visible");
 
         initSliders();
