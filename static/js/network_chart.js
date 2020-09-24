@@ -254,7 +254,7 @@ NetworkChart.prototype.updateVis = function() {
             })
             .attr("cy", d => {
                 let radius = vis.circleRadius(d.total_donors);
-                d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
+                return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
 
         vis.images
@@ -264,7 +264,7 @@ NetworkChart.prototype.updateVis = function() {
             })
             .attr("cy", d => {
                 let radius = vis.circleRadius(d.total_donors);
-                d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
+                return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
         });
 
