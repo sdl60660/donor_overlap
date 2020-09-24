@@ -14,6 +14,11 @@ NetworkChart.prototype.initVis = function() {
     vis.width = 1800;
     vis.height = 1200;
 
+    if (phoneBrowsing === true) {
+        vis.width = 1200;
+        vis.height = 1800;
+    }
+
     // Initialize SVG
     vis.svg = d3.select(vis.parentElement)
         .append("svg")
@@ -140,13 +145,13 @@ NetworkChart.prototype.updateVis = function() {
     const vis = this;
 
     vis.simulation = d3.forceSimulation(vis.nodeData)
-        .force('x', d3.forceX(d => d.party === "REP" ? vis.width*0.67 : vis.width*0.33).strength(0.03))
+        .force('x', d3.forceX(d => d.party === "REP" ? vis.width*0.67 : vis.width*0.33).strength(0.035))
         // .force('x', d3.forceX(vis.width / 2).strength(0.035))
         // .force('centerX', d3.forceX(vis.width / 2).strength(0.02))
-        .force('y', d3.forceY(vis.height / 2).strength(0.04))
+        .force('y', d3.forceY(vis.height / 2).strength(0.025))
         .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 350 - 2.5*d.pct_val).strength(d => d.pct_val / 500))
-        .force("repelForce", d3.forceManyBody().strength(-350).distanceMax(430))
-        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(3))
+        .force("repelForce", d3.forceManyBody().strength(-500).distanceMax(450))
+        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(4))
         .force("center", d3.forceCenter(vis.width / 2, vis.height / 2));
 
 
@@ -249,21 +254,21 @@ NetworkChart.prototype.updateVis = function() {
 
         vis.nodes
             .attr("cx", d => {
-                let radius = vis.circleRadius(d.total_donors);
+                let radius = vis.circleRadius(d.total_donors) + 1;
                 return d.x = Math.max(radius, Math.min(vis.width - radius, d.x));
             })
             .attr("cy", d => {
-                let radius = vis.circleRadius(d.total_donors);
+                let radius = vis.circleRadius(d.total_donors) + 1;
                 return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
 
         vis.images
             .attr("cx", d => {
-                let radius = vis.circleRadius(d.total_donors);
+                let radius = vis.circleRadius(d.total_donors) + 1;
                 return d.x = Math.max(radius, Math.min(vis.width - radius, d.x));
             })
             .attr("cy", d => {
-                let radius = vis.circleRadius(d.total_donors);
+                let radius = vis.circleRadius(d.total_donors) + 1;
                 return d.y = Math.max(radius, Math.min(vis.height - radius, d.y))
             });
         });

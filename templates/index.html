@@ -90,12 +90,12 @@
 {#        </div>#}
 
     <div class="spacer"></div>
-    <hr>
-
 
     <!-- Third Wrapper/Tile -->
     <div class="tile-wrapper" id="nodelink-wrapper" style="margin-top: 8vh; margin-bottom: 20vh;">
     <div class="container" id="nodelink-intro" style="text-align: center; margin: auto;">
+        <h3>Candidate Overlap</h3>
+        <br>
         <div class="col-md-1"></div>
         <div class="col-md-10" style="text-align: left">
             <p>
@@ -128,7 +128,7 @@
                 <span style="margin-bottom: 5px;">Candidate:</span>
                 <select id="overlap-nodelink-candidate-select" class="fstdropdown-select candidate-select"></select>
             </div>
-            <div class="col-md-5" id="slider-div">
+            <div class="col-md-5 slider-div">
                 <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
                 <div class="range-value" id="min-overlap-threshold-slider-label"></div>
                 <input type="range" id="min-overlap-threshold" name="overlap" min="3" max="40" step="1" value="7">
@@ -145,20 +145,18 @@
     </div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="tile-wrapper" id="network-wrapper" style="margin-top: 40vh; margin-bottom: 20vh;">
+    <div class="tile-wrapper" id="network-wrapper">
     <div class="container" id="network-tile">
-        <div class="row"><h2>The Big Picture</h2></div>
-        <div class="row" style="margin-top: 4vh;">
+        <h3>The Big Picture</h3>
+        <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-4" id="slider-div">
+            <div class="col-md-4 slider-div">
                 <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
                 <div class="range-value" id="min-overlap-network-slider-label"></div>
                 <input type="range" id="min-overlap-network" name="overlap-network" min="5" max="80" step="1" value="31">
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-4" id="slider-div">
+            <div class="col-md-4 slider-div">
                 <span style="margin-bottom: 5px;">Min. Donor Count:</span>
                 <div class="range-value" id="min-donor-threshold-network-slider-label"></div>
                 <input type="range" id="min-donor-threshold-network" name="donor-count-network" min="10000" max="200000" step="10000" value="30000">

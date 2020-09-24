@@ -21,7 +21,7 @@ body {
     font-family: 'Lora', 'Merriweather', 'Playfair Display', "Helvetica Neue";
 }
 
-h1 {
+h1, h3 {
     font-family: 'Roboto';
 }
 
@@ -67,11 +67,28 @@ strong {
     margin-left: auto !important;
 	margin-top: 20px;
 
-    border: 3px solid black;
+    /*border: 3px solid black;*/
 }
 
-#nodelink-tile, #network-tile {
+
+#network-wrapper {
+    margin-top: 30vh;
+    margin-bottom: 20vh;
+}
+
+#nodelink-tile {
+    max-width: 98vh;
+}
+
+#network-tile {
     max-width: 120vh;
+}
+
+#network-area {
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 #intro-tile {
@@ -126,29 +143,8 @@ strong {
         max-width: 98vw;
     }
 
-    .step {
-        min-width: 50vw;
-        /*margin-top: 0px;*/
-        /*margin-bottom: 0px;*/
-        /*margin-left: 0px;*/
-
-        /*min-height: 150px;*/
-        /*padding-bottom: 10px;*/
-        /*border-radius: 15px;*/
-
-        /*width: 100%;*/
-
-        /*font-size: 15pt;*/
-
-        /*position: fixed;*/
-        /*left: 50;*/
-        /*top: 0;*/
-
-        /*opacity: 0.0;*/
-
-        /*z-index: 80;*/
-
-        /*overflow: hidden;*/
+    #network-wrapper {
+        margin-top: 10vh;
     }
 
     .viz-tile {
@@ -233,7 +229,8 @@ hr {
     border: solid 0.2px #bbb !important;
 }
 
-#slider-div {
+.slider-div {
+    margin-top: 10px;
     padding: 0;
     text-align: center;
     height: 100%;
