@@ -23,6 +23,7 @@ NetworkChart.prototype.initVis = function() {
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
         .attr("class", "d3-tip")
+        .offset([-15, 0])
         .html(function(d) {
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
@@ -51,18 +52,27 @@ NetworkChart.prototype.initVis = function() {
         .attr("stroke-opacity", 0.6)
         .selectAll("line");
 
-    // vis.curvedLink = vis.svg.append("g")
-    //     .attr("fill", "none")
-    //     .attr("stroke-opacity", 0.6)
-    //     .selectAll("path");
-    //
-    // vis.hiddenLink = vis.svg.append("g")
-    //     .attr("fill", "none")
-    //     .selectAll("path");
-    //
-    // vis.linkText = vis.svg.append("g")
-    //     .attr('id', 'textPaths')
-    //     .selectAll("text");
+    // Set path color scale and define arrow markers
+    // const types = ["out", "in"];
+    // vis.pathColor = d3.scaleOrdinal()
+    //     .domain(types)
+    //     .range(["blue", "green"]);
+
+    // vis.svg.append("defs").selectAll("marker")
+    //     .data(types)
+    //     .join("marker")
+    //         .attr("id", d => `arrow-${d}`)
+    //         .attr("viewBox", "0 -5 10 10")
+    //         .attr("refX", 8)
+    //         .attr("refY", 0)
+    //         .attr("markerWidth", 4)
+    //         .attr("markerHeight", 4)
+    //         // .attr("markerUnits", "userSpaceOnUse")
+    //         .attr("orient", "auto")
+    //         .style("opacity", 0.8)
+    //     .append("path")
+    //         .attr("fill", vis.pathColor)
+    //         .attr("d", "M0,-5L10,0L0,5");
 
     const defs = vis.svg
         .append("defs")
@@ -134,9 +144,9 @@ NetworkChart.prototype.updateVis = function() {
         // .force('x', d3.forceX(vis.width / 2).strength(0.035))
         // .force('centerX', d3.forceX(vis.width / 2).strength(0.02))
         .force('y', d3.forceY(vis.height / 2).strength(0.04))
-        .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 350 - 3*d.pct_val).strength(d => d.pct_val / 500))
-        .force("repelForce", d3.forceManyBody().strength(-300).distanceMax(450))
-        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(2))
+        .force("link", d3.forceLink(vis.selectedOverlapLinks).id((d) => d.id).distance(d => 350 - 2.5*d.pct_val).strength(d => d.pct_val / 500))
+        .force("repelForce", d3.forceManyBody().strength(-350).distanceMax(430))
+        .force("charge", d3.forceCollide().radius((d) => vis.circleRadius(d.total_donors) + 2).iterations(3))
         .force("center", d3.forceCenter(vis.width / 2, vis.height / 2));
 
 
@@ -148,23 +158,9 @@ NetworkChart.prototype.updateVis = function() {
         .join(
             enter => enter.append("line")
                 .style("z-index", 1)
-                .attr("class", d => `straight-link link-${d.source.id} link-${d.target.id}`)
+                .attr("class", d => `straight-link out-${d.source.id} in-${d.target.id}`)
                 .attr("stroke", "#333")
                 .attr("stroke-width", d => vis.lineWidth(d.pct_val)),
-                // .attr("x1", vis.width/2)
-                // .attr("y1", vis.height/2)
-                // .attr("x2", vis.width/2)
-                // .attr("y2", vis.height/2)
-                // .call(enter => enter.transition()
-                //     .duration(transitionDuration)
-                //     .attr("x2", d => d.initialX2)
-                //     .attr("y2", d => d.initialY2)
-                // ),
-            // update => update
-            //     .transition()
-            //     .duration(transitionDuration)
-            //         .attr("x2", d => d.initialX2)
-            //         .attr("y2", d => d.initialY2)
 
             exit => exit.remove()
         );
@@ -207,8 +203,16 @@ NetworkChart.prototype.updateVis = function() {
                         vis.svg.selectAll(".straight-link")
                             .style("opacity", 0);
 
-                        vis.svg.selectAll(`.link-${d.id}`)
+                        vis.svg.selectAll(`.out-${d.id}, .in-${d.id}`)
                             .style("opacity", 1);
+
+                        vis.svg.selectAll(`.out-${d.id}`)
+                            .attr("stroke", "blue")
+                            // .attr("marker-end", (d) => `url(${new URL(`#arrow-out`, location)})`);
+
+                        vis.svg.selectAll(`.in-${d.id}`)
+                            .attr("stroke", "green")
+                            // .attr("marker-end", (d) => `url(${new URL(`#arrow-in`, location)})`);
                     }
 
                 })
@@ -216,21 +220,12 @@ NetworkChart.prototype.updateVis = function() {
                     vis.tip.hide();
 
                     vis.svg.selectAll(".straight-link")
+                        .attr("stroke", "#333")
                         .style("opacity", 1);
 
                 })
-                // .on("dblclick", (d) => {
-                // .on("dblclick", (d) => {
-                //     $("#overlap-nodelink-candidate-select").val(d.id);
-                //     document.querySelector("#overlap-nodelink-candidate-select").fstdropdown.rebind();
-                //     featuredCandidateId = d.id;
-                //     // vis.simulation.stop();
-                //     vis.wrangleData();
-                // })
                 .attr("cx", vis.width/2)
                 .attr("cy", vis.height/2)
-                .attr("x", vis.width/2)
-                .attr("y", vis.height/2)
                 .style("stroke-width", 4)
                 .style("stroke", d => partyColor(d.party))
                 .call(drag(vis.simulation)),
