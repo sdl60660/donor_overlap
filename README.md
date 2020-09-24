@@ -1,5 +1,5 @@
-# candidate_fundraising
+# candidate_donor_overlap
 
-Visualization project based on FEC records with a particular focus on candidate donor overlap and mapping donors to zipcode demographics.
+Visualization project based on FEC records with a particular focus on candidate donor overlap.
 
-Work in progress: http://donors-2020.herokuapp.com/
+Work in progress: http://donors-overlap.herokuapp.com/
