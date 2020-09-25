@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47d53e8f-c72e-45b8-bcd8-947fc91f128b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/static/js/network_chart.js" afterPath="$PROJECT_DIR$/static/js/network_chart.js" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.js" afterPath="$PROJECT_DIR$/static/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +27,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="network_chart.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="network_chart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/network_chart.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="437">
@@ -42,13 +41,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="228" column="29" lean-forward="true" selection-start-line="228" selection-start-column="29" selection-end-line="228" selection-end-column="29" />
+            <state relative-caret-position="240">
+              <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding>
-                <marker date="1600979706611" expanded="true" signature="5568:5666" ph="..." />
+                <marker date="1600992371634" expanded="true" signature="5568:5666" ph="..." />
               </folding>
             </state>
           </provider>
@@ -103,7 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>overlapthreshold</find>
       <find>range-value</find>
       <find>intro-wrapper</find>
       <find>100vh</find>
@@ -133,6 +131,7 @@
       <find>known</find>
       <find>vw</find>
       <find>candidate over</find>
+      <find>identi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,11 +141,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/static/js/lodash.js" />
-        <option value="$PROJECT_DIR$/static/js/main.js" />
         <option value="$PROJECT_DIR$/static/js/nodelink.js" />
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/js/network_chart.js" />
+        <option value="$PROJECT_DIR$/static/js/main.js" />
       </list>
     </option>
   </component>
@@ -163,8 +162,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1821" />
-    <option name="y" value="-423" />
+    <option name="x" value="238" />
+    <option name="y" value="23" />
     <option name="width" value="1621" />
     <option name="height" value="1057" />
   </component>
@@ -289,7 +288,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1821" y="-423" width="1621" height="1057" extended-state="0" />
+    <frame x="238" y="23" width="1621" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -354,16 +353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="228" column="29" lean-forward="true" selection-start-line="228" selection-start-column="29" selection-end-line="228" selection-end-column="29" />
-          <folding>
-            <marker date="1600979706611" expanded="true" signature="5568:5666" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/nodelink.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -418,6 +407,16 @@
             <marker date="1600982424767" expanded="true" signature="758:777" ph="..." />
             <marker date="1600982424767" expanded="true" signature="909:922" ph="..." />
             <marker date="1600982424767" expanded="true" signature="9400:9411" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <marker date="1600992371634" expanded="true" signature="5568:5666" ph="..." />
           </folding>
         </state>
       </provider>
