@@ -46,8 +46,8 @@ function formatSpacedStrings(str) {
 function circlePlotCoordinates(radius, center, numItems) {
     let output = [];
     for(let i = 0; i < numItems; i++) {
-        let x = center[0] + radius * Math.cos(2 * Math.PI * i / numItems);
-        let y = center[1] + radius * Math.sin(2 * Math.PI * i / numItems);
+        let x = center[0] + radius * Math.cos(0.3 + 2 * Math.PI * i / numItems);
+        let y = center[1] + radius * Math.sin(0.3 + 2 * Math.PI * i / numItems);
 
         output.push([x,y]);
     }
