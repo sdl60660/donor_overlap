@@ -14,7 +14,7 @@ let overlapThreshold = 7;
 let featuredCandidateId = "H8NY15148";
 
 
-let overlapThresholdNewtork = 30;
+let overlapThresholdNewtork = 31;
 let minDonorCountNetwork = 30000;
 
 const partyColor = d3.scaleOrdinal()
