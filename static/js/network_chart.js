@@ -57,28 +57,6 @@ NetworkChart.prototype.initVis = function() {
         .attr("stroke-opacity", 0.6)
         .selectAll("line");
 
-    // Set path color scale and define arrow markers
-    // const types = ["out", "in"];
-    // vis.pathColor = d3.scaleOrdinal()
-    //     .domain(types)
-    //     .range(["blue", "green"]);
-
-    // vis.svg.append("defs").selectAll("marker")
-    //     .data(types)
-    //     .join("marker")
-    //         .attr("id", d => `arrow-${d}`)
-    //         .attr("viewBox", "0 -5 10 10")
-    //         .attr("refX", 8)
-    //         .attr("refY", 0)
-    //         .attr("markerWidth", 4)
-    //         .attr("markerHeight", 4)
-    //         // .attr("markerUnits", "userSpaceOnUse")
-    //         .attr("orient", "auto")
-    //         .style("opacity", 0.8)
-    //     .append("path")
-    //         .attr("fill", vis.pathColor)
-    //         .attr("d", "M0,-5L10,0L0,5");
-
     const defs = vis.svg
         .append("defs")
         .attr("id", "imgdefs");
@@ -100,6 +78,7 @@ NetworkChart.prototype.initVis = function() {
 
     vis.images = vis.svg.append("g")
         .attr("class", "nodelink-images")
+        // .attr("opacity", 0)
         .selectAll("circle.images");
 
     vis.nodes = vis.svg.append("g")
@@ -169,10 +148,31 @@ NetworkChart.prototype.updateVis = function() {
                 .style("z-index", 1)
                 .attr("class", d => `straight-link out-${d.source.id} in-${d.target.id}`)
                 .attr("stroke", "#333")
-                .attr("stroke-width", d => vis.lineWidth(d.pct_val)),
+                .attr("stroke-width", 2.5),
 
             exit => exit.remove()
         );
+
+
+    vis.svg.append("defs").selectAll("marker")
+        .data(vis.selectedOverlapLinks, (d) => [d.source, d.target])
+        .join("marker")
+            .attr("id", d => `arrow-${d.source.id}-${d.target.id}`)
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", d => {
+                let associatedNode = vis.nodeData.find(i => i.id === d.target.id);
+                return vis.circleRadius(associatedNode.total_donors) + 10;
+            })
+            .attr("refY", 0)
+            .attr("markerWidth", 4)
+            .attr("markerHeight", 4)
+            // .attr("markerUnits", "userSpaceOnUse")
+            .attr("orient", "auto")
+            .style("opacity", 0.8)
+        .append("path")
+            .attr("class", d => `out-${d.source.id} in-${d.target.id}`)
+            .attr("fill", "black")
+            .attr("d", "M0,-5L10,0L0,5");
 
 
     vis.svg.selectAll(".candidate-bubble-images")
@@ -216,13 +216,21 @@ NetworkChart.prototype.updateVis = function() {
                         vis.svg.selectAll(`.out-${d.id}, .in-${d.id}`)
                             .style("opacity", 1);
 
-                        vis.svg.selectAll(`.out-${d.id}`)
+                        console.log(d);
+
+                        vis.svg.selectAll(`path.out-${d.id}`)
+                            .attr("fill", "blue");
+
+                        vis.svg.selectAll(`line.out-${d.id}`)
                             .attr("stroke", "blue")
-                            // .attr("marker-end", (d) => `url(${new URL(`#arrow-out`, location)})`);
+                            .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
+
+                        vis.svg.selectAll(`path.in-${d.id}`)
+                            .attr("fill", "green");
 
                         vis.svg.selectAll(`.in-${d.id}`)
                             .attr("stroke", "green")
-                            // .attr("marker-end", (d) => `url(${new URL(`#arrow-in`, location)})`);
+                            .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
                     }
 
                 })
@@ -231,6 +239,7 @@ NetworkChart.prototype.updateVis = function() {
 
                     vis.svg.selectAll(".straight-link")
                         .attr("stroke", "#333")
+                        .attr("marker-end", "unset")
                         .style("opacity", 1);
 
                 })
