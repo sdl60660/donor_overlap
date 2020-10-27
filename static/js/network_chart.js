@@ -44,7 +44,7 @@ NetworkChart.prototype.initVis = function() {
     // Scales for node radius and with of line depending on overlap percentage
     vis.circleRadius = d3.scaleLinear()
         // .domain(d3.extent(overlapLinks, (d) => d.pct_val))
-        .domain([10000, 1000000])
+        .domain([10000, 2000000])
         .range([vis.minCircleRadius, 50]);
 
     vis.lineWidth = d3.scaleLinear()
