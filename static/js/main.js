@@ -214,8 +214,8 @@ function main() {
 
     // Begin loading datafiles
     const promises = [
-        d3.json("static/data/candidate_overlap_links.json"),
-        d3.json("static/data/candidate_overlap_nodes.json"),
+        d3.csv("static/data/candidate_overlap_links.csv"),
+        d3.csv("static/data/candidate_overlap_nodes.csv"),
         d3.json("static/data/candidate_id_name_lookup.json")
     ];
 
