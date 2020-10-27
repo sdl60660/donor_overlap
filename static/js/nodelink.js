@@ -11,8 +11,8 @@ NodeLink.prototype.initVis = function() {
     const vis = this;
 
     // Set height/width of viewBox
-    vis.width = 1440;
-    vis.height = 1440;
+    vis.width = 1500;
+    vis.height = 1500;
 
     // Initialize SVG
     vis.svg = d3.select(vis.parentElement)
@@ -87,24 +87,24 @@ NodeLink.prototype.initVis = function() {
     vis.straightLink = vis.svg.append("g")
         .attr("fill", "none")
         .attr("stroke-opacity", 0.6)
-        .selectAll("line");
+        .selectAll("line.straight-link");
 
     vis.curvedLink = vis.svg.append("g")
         .attr("fill", "none")
         .attr("stroke-opacity", 0.6)
-        .selectAll("path");
+        .selectAll("path.directional-link");
 
     vis.hiddenLink = vis.svg.append("g")
         .attr("fill", "none")
-        .selectAll("path");
+        .selectAll("path.hidden-directional-link");
 
     vis.linkText = vis.svg.append("g")
         .attr('id', 'textPaths')
-        .selectAll("text");
+        .selectAll("text.arrow-labels");
 
     const defs = vis.svg
         .append("defs")
-        .attr("id", "imgdefs");
+        .attr("id", "nodelink-imgdefs");
 
     vis.candidateImages = defs
         .selectAll("pattern")
@@ -128,7 +128,7 @@ NodeLink.prototype.initVis = function() {
     vis.node = vis.svg.append("g")
         .attr("stroke", "#fff")
         .attr("stroke-width", 1.5)
-        .selectAll("circle");
+        .selectAll("circle.candidate-node");
 
     // vis.labels = vis.svg.append("g")
     //     .attr("class", "nodelink-labels")
@@ -149,11 +149,9 @@ NodeLink.prototype.wrangleData = function() {
     // vis.centerNodeId = overlapNodes[Math.round(getRandomArbitrary(0, 100))].id;
     // vis.numOuterNodes = 15;
 
-    console.log(overlapThreshold);
-
     // vis.direction = "outbound";
     if (vis.direction === "outbound") {
-        vis.selectedOverlapLinks = overlapLinks
+        vis.selectedOverlapLinks = overlapLinks.slice()
             .filter((d) =>
                 (d.source === vis.centerNodeId || d.source.id === vis.centerNodeId)
                 // || (d.target === vis.centerNodeId || d.target.id === vis.centerNodeId) )
@@ -161,15 +159,13 @@ NodeLink.prototype.wrangleData = function() {
             );
     }
     else {
-        vis.selectedOverlapLinks = overlapLinks
+        vis.selectedOverlapLinks = overlapLinks.slice()
             .filter((d) =>
                 // (d.source === vis.centerNodeId || d.source.id === vis.centerNodeId)
                 (d.target === vis.centerNodeId || d.target.id === vis.centerNodeId)
                 && d.pct_val > overlapThreshold
             );
     }
-
-    console.log(vis.selectedOverlapLinks.length);
 
     // Reset the source to contain just the ID
     vis.selectedOverlapLinks.forEach( function(d) {
@@ -181,7 +177,7 @@ NodeLink.prototype.wrangleData = function() {
 
     const includedCandidates = vis.selectedOverlapLinks.map(d => vis.direction === "outbound" ? d.target : d.source);
     // console.log(includedCandidates);
-    vis.directionalLinks = overlapLinks
+    vis.directionalLinks = overlapLinks.slice()
         .filter((d) =>
             (includedCandidates.includes(d.source) && (vis.centerNodeId === d.target || vis.centerNodeId === d.target.id))
             || (includedCandidates.includes(d.target) && (vis.centerNodeId === d.source || vis.centerNodeId === d.source.id))
@@ -203,7 +199,7 @@ NodeLink.prototype.wrangleData = function() {
         }
     });
 
-    vis.overlapNodes = overlapNodes.filter(d => includedCandidates.includes(d.id) || d.id === vis.centerNodeId);
+    vis.overlapNodes = overlapNodes.slice().filter(d => includedCandidates.includes(d.id) || d.id === vis.centerNodeId);
     vis.numOuterNodes = vis.overlapNodes.length - 1;
 
     // console.log("Filtered Directional Links", performance.now() - vis.start);
@@ -463,7 +459,7 @@ NodeLink.prototype.updateVis = function() {
                     $("#overlap-nodelink-candidate-select").val(d.id);
                     document.querySelector("#overlap-nodelink-candidate-select").fstdropdown.rebind();
                     featuredCandidateId = d.id;
-                    // vis.simulation.stop();
+
                     vis.wrangleData();
                 })
                 .attr("cx", vis.width/2)
@@ -472,7 +468,6 @@ NodeLink.prototype.updateVis = function() {
                 .attr("y", vis.height/2)
                 .style("stroke-width", 4)
                 .style("stroke", d => partyColor(d.party))
-                // .call(drag(vis.simulation))
                 .call(enter => enter.transition()
                     .duration(transitionDuration)
                     .attr("cx", (d) => d.initialX)
@@ -533,7 +528,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
     const ringCircumference = linkDistance*2*Math.PI;
     const nodeSpace = ringCircumference / vis.numOuterNodes;
 
-    let nodePadding = 15;
+    let nodePadding = 25;
 
     if ( nodeSpace > 2*(vis.minCircleRadius + nodePadding) ) {
         vis.circumferenceCoordinateSet = circlePlotCoordinates(linkDistance, [vis.width / 2, vis.height / 2], vis.numOuterNodes);

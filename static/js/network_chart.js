@@ -48,7 +48,7 @@ NetworkChart.prototype.initVis = function() {
         .range([vis.minCircleRadius, 50]);
 
     vis.lineWidth = d3.scaleLinear()
-        .domain(d3.extent(overlapLinks, (d) => d.pct_val))
+        .domain(d3.extent(networkLinks, (d) => d.pct_val))
         .range([0.5, 5]);
 
 
@@ -59,27 +59,27 @@ NetworkChart.prototype.initVis = function() {
 
     const defs = vis.svg
         .append("defs")
-        .attr("id", "imgdefs");
+        .attr("id", "network-imgdefs");
 
     vis.candidateImages = defs
         .selectAll("pattern")
-        .data(overlapNodes, (d) => d.id)
+        .data(networkNodes, (d) => d.id)
         .join("pattern")
         .attr("id", d => `network-image-${d.id}`)
         .attr("height", (d) => 1)
         .attr("width", (d) => 1)
         .attr("patternUnits", "objectBoundingBox")
         .append("image")
-            .attr("class", "candidate-bubble-images")
+            .attr("class", "network-candidate-bubble-images")
             // .attr("id", d => d.id)
             .attr("x", 0)
             .attr("y", 0)
             .attr("xlink:href", d => `/static/images/candidate_images/${d.image_url}`);
 
     vis.images = vis.svg.append("g")
-        .attr("class", "nodelink-images")
+        .attr("class", "network-images")
         // .attr("opacity", 0)
-        .selectAll("circle.images");
+        .selectAll("circle.network-image");
 
     vis.nodes = vis.svg.append("g")
         .attr("stroke", "#fff")
@@ -94,15 +94,17 @@ NetworkChart.prototype.initVis = function() {
 NetworkChart.prototype.wrangleData = function() {
     const vis = this;
 
+    console.log("network data wrangle");
+
     // vis.donorThreshold = 30000;
     // vis.overlapThreshold = 31;
 
-    vis.nodeData = overlapNodes.slice()
+    vis.nodeData = networkNodes.slice()
         .filter(d => d.total_donors > minDonorCountNetwork);
 
     const includedCandidates = vis.nodeData.map(d => d.id);
 
-    vis.selectedOverlapLinks = _.cloneDeep(overlapLinks.slice().filter( d => {
+    vis.selectedOverlapLinks = _.cloneDeep(networkLinks.slice().filter( d => {
         return d.pct_val > overlapThresholdNewtork &&
             (includedCandidates.includes(d.target) && includedCandidates.includes(d.source));
     }));
@@ -124,6 +126,8 @@ NetworkChart.prototype.wrangleData = function() {
 
 NetworkChart.prototype.updateVis = function() {
     const vis = this;
+
+    console.log("network updateVis");
 
     vis.simulation = d3.forceSimulation(vis.nodeData)
         .alphaDecay(vis.decayVal)
@@ -175,7 +179,7 @@ NetworkChart.prototype.updateVis = function() {
             .attr("d", "M0,-5L10,0L0,5");
 
 
-    vis.svg.selectAll(".candidate-bubble-images")
+    vis.svg.selectAll(".network-candidate-bubble-images")
         .attr("height", (d) => 2*vis.circleRadius(d.total_donors))
         .attr("width", (d) => 2*vis.circleRadius(d.total_donors));
 
@@ -185,7 +189,7 @@ NetworkChart.prototype.updateVis = function() {
         .join(
             enter => enter.append("circle")
                 .attr("x", d => d.party === "REP" ? 0.67*vis.width : 0.33*vis.width)
-                .attr("class", "candidate-images images")
+                .attr("class", "network-image")
                 .attr("r", d => vis.circleRadius(d.total_donors))
                 .style("fill", d => `url(#network-image-${d.id})`),
 
@@ -201,7 +205,7 @@ NetworkChart.prototype.updateVis = function() {
         .data(vis.nodeData, (d) => d.id)
         .join(
             enter => enter.append("circle")
-                .attr("class", "candidate-node")
+                // .attr("class", "candidate-node")
                 .attr("fill", (d) => partyColor(d.party))
                 .attr("fill-opacity", 0.1)
                 .style("z-index", 10)
@@ -209,29 +213,25 @@ NetworkChart.prototype.updateVis = function() {
                 .on("mouseover", (d) => {
                     vis.tip.show(d);
 
-                    if (d.id !== vis.centerNodeId) {
-                        vis.svg.selectAll(".straight-link")
-                            .style("opacity", 0);
+                    vis.svg.selectAll(".straight-link")
+                        .style("opacity", 0);
 
-                        vis.svg.selectAll(`.out-${d.id}, .in-${d.id}`)
-                            .style("opacity", 1);
+                    vis.svg.selectAll(`.out-${d.id}, .in-${d.id}`)
+                        .style("opacity", 1);
 
-                        console.log(d);
+                    vis.svg.selectAll(`path.out-${d.id}`)
+                        .attr("fill", "blue");
 
-                        vis.svg.selectAll(`path.out-${d.id}`)
-                            .attr("fill", "blue");
+                    vis.svg.selectAll(`line.out-${d.id}`)
+                        .attr("stroke", "blue")
+                        .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
 
-                        vis.svg.selectAll(`line.out-${d.id}`)
-                            .attr("stroke", "blue")
-                            .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
+                    vis.svg.selectAll(`path.in-${d.id}`)
+                        .attr("fill", "green");
 
-                        vis.svg.selectAll(`path.in-${d.id}`)
-                            .attr("fill", "green");
-
-                        vis.svg.selectAll(`.in-${d.id}`)
-                            .attr("stroke", "green")
-                            .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
-                    }
+                    vis.svg.selectAll(`.in-${d.id}`)
+                        .attr("stroke", "green")
+                        .attr("marker-end", (x) => `url(${new URL(`#arrow-${x.source.id}-${x.target.id}`, location)})`);
 
                 })
                 .on("mouseout", (d) => {
@@ -297,25 +297,27 @@ NetworkChart.prototype.updateVis = function() {
 
 drag = simulation => {
 
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
+    console.log("network drag function");
 
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
+    function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        }
 
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-  }
+    function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+    }
 
-  return d3.drag()
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended);
+    function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
+
+    return d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
 }

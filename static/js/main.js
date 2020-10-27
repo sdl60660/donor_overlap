@@ -236,6 +236,9 @@ function main() {
         overlapNodes = allData[1];
         candidateIdNames = allData[2];
 
+        networkLinks = _.cloneDeep(overlapLinks);
+        networkNodes = _.cloneDeep(overlapNodes);
+
         overlapLinks.forEach(link => {
             link.pct_val = +link.pct_val;
             link.raw_val = +link.raw_val;
@@ -247,10 +250,11 @@ function main() {
         $("#intro-wrapper, #nodelink-wrapper, #network-wrapper, .footer")
             .css("visibility", "visible");
 
+        networkChart = new NetworkChart("#network-area");
+
         initSliders();
         buildCandidateDropdowns();
         nodeLink = new NodeLink("#nodelink-area");
-        networkChart = new NetworkChart("#network-area")
 
     });
 }
