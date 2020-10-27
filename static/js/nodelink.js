@@ -48,14 +48,14 @@ NodeLink.prototype.initVis = function() {
         });
     vis.svg.call(vis.tip);
 
-    vis.minCircleRadius = 15;
+    vis.minCircleRadius = 20;
     vis.centerNodeRadiusVal = 85;
     // Scales for node radius and with of line depending on overlap percentage
     vis.circleRadius = d3.scalePow()
         // .domain(d3.extent(overlapLinks, (d) => d.pct_val))
-        .domain([0, 45])
+        .domain([1, 45])
         .range([vis.minCircleRadius, 65])
-        .exponent(1.3);
+        .exponent(1.2);
 
     vis.lineWidth = d3.scalePow()
         .domain(d3.extent(overlapLinks, (d) => d.pct_val))
@@ -149,6 +149,8 @@ NodeLink.prototype.wrangleData = function() {
     // vis.centerNodeId = overlapNodes[Math.round(getRandomArbitrary(0, 100))].id;
     // vis.numOuterNodes = 15;
 
+    console.log(overlapThreshold);
+
     // vis.direction = "outbound";
     if (vis.direction === "outbound") {
         vis.selectedOverlapLinks = overlapLinks
@@ -166,6 +168,8 @@ NodeLink.prototype.wrangleData = function() {
                 && d.pct_val > overlapThreshold
             );
     }
+
+    console.log(vis.selectedOverlapLinks.length);
 
     // Reset the source to contain just the ID
     vis.selectedOverlapLinks.forEach( function(d) {

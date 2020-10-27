@@ -236,6 +236,11 @@ function main() {
         overlapNodes = allData[1];
         candidateIdNames = allData[2];
 
+        overlapLinks.forEach(link => {
+            link.pct_val = +link.pct_val;
+            link.raw_val = +link.raw_val;
+        });
+
         $(".loadring-container")
             .hide();
 
