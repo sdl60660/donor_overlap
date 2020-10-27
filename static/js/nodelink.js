@@ -20,6 +20,7 @@ NodeLink.prototype.initVis = function() {
         .attr("viewBox", [0, 0, vis.width, vis.height]);
 
 
+    vis.degreeOffset = 17;
     vis.tooltipOrientation = d3.scaleThreshold()
         .domain([-91, -89, -1, 1, 89, 91, 179])
         .range(["n", "n", "n", "n", "s", "s", "s", "n"]);
@@ -27,8 +28,8 @@ NodeLink.prototype.initVis = function() {
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
         .attr("class", "d3-tip")
-        .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle))
-        .offset(d => d.nodeAngle > 170 || (d.nodeAngle < 10 && d.nodeAngle > -10) ? [-25, 0] : d.nodeAngle > 0 ? [20,0] : [-10,0])
+        .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle + vis.degreeOffset))
+        .offset(d => d.nodeAngle + vis.degreeOffset > 170 || (d.nodeAngle + vis.degreeOffset < 10 && (d.nodeAngle + vis.degreeOffset) > -10) ? [-25, 0] : d.nodeAngle + vis.degreeOffset > 0 ? [20,0] : [-10,0])
         .html(function(d) {
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
@@ -531,7 +532,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
     let nodePadding = 25;
 
     if ( nodeSpace > 2*(vis.minCircleRadius + nodePadding) ) {
-        vis.circumferenceCoordinateSet = circlePlotCoordinates(linkDistance, [vis.width / 2, vis.height / 2], vis.numOuterNodes);
+        vis.circumferenceCoordinateSet = circlePlotCoordinates(linkDistance, [vis.width / 2, vis.height / 2], vis.numOuterNodes, vis.degreeOffset );
     }
     else {
         let nodeDiameter = (2*(vis.minCircleRadius + nodePadding));
@@ -551,7 +552,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
             }
 
             vis.circumferenceCoordinateSet = vis.circumferenceCoordinateSet
-                .concat( circlePlotCoordinates((baseRadius + i*100), [vis.width / 2, vis.height / 2], chunkSize) );
+                .concat( circlePlotCoordinates((baseRadius + i*100), [vis.width / 2, vis.height / 2], chunkSize), vis.degreeOffset );
         }
 
     }
