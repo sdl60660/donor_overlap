@@ -131,6 +131,40 @@ strong {
     border-radius: 15px;
 }
 
+.range-value span {
+    /*padding-top: 3px;*/
+    /*padding-bottom: 3px;*/
+
+    min-width: 30px;
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 26px;
+    line-height: 24px;
+
+    text-align: center;
+
+    background: white;
+    color: black;
+
+    font-size: 12px;
+
+    display: block;
+    position: absolute;
+    left: 50%;
+
+    transform: translate(-50%, 0);
+
+    border-radius: 6px;
+    border: 1px solid black;
+}
+
+.slider-div {
+    margin-top: 10px;
+    padding: 0;
+    text-align: center;
+    height: 100%;
+}
+
 
 @media (max-width: 1100px) {
     /*#sections {*/
@@ -139,6 +173,18 @@ strong {
         /*left: 50;*/
         /*z-index: 50;*/
     /*}*/
+
+    .range-value span {
+        font-size: 20px;
+
+        min-width: 38px;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .slider-div {
+        margin-bottom: 25px;
+    }
 
     #nodelink-tile, #network-tile {
         max-width: 93vw;
@@ -230,13 +276,6 @@ hr {
     border: solid 0.2px #bbb !important;
 }
 
-.slider-div {
-    margin-top: 10px;
-    padding: 0;
-    text-align: center;
-    height: 100%;
-}
-
 #candidate-select {
     text-align: center;
 }
@@ -244,33 +283,6 @@ hr {
 .range-value{
     position: absolute;
     top: 110%;
-}
-
-.range-value span{
-    /*padding-top: 3px;*/
-    /*padding-bottom: 3px;*/
-
-    min-width: 30px;
-    padding-left: 2px;
-    padding-right: 2px;
-    height: 26px;
-    line-height: 24px;
-
-    text-align: center;
-
-    background: white;
-    color: black;
-
-    font-size: 12px;
-
-    display: block;
-    position: absolute;
-    left: 50%;
-
-    transform: translate(-50%, 0);
-
-    border-radius: 6px;
-    border: 1px solid black;
 }
 
 .noselect {
