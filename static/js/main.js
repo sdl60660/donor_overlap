@@ -59,86 +59,6 @@ function determinePhoneBrowsing() {
 }
 
 
-// Down arrow scroll trigger
-function setScrollArrow() {
-    $(".downArrow").on("click", function() {
-        // If mobile, arrow will be with them the whole time
-        // if (phoneBrowsing === true) {
-
-            // // If first scroll from intro block
-            // if ($(window).scrollTop() < window.innerHeight) {
-            //     $('html, body').animate({scrollTop: $('#sunburst-wrapper').offset().top }, 'slow');
-            // }
-            // // If at joint between sunburst/flowchart, be specific
-            // else if ($("#last-sunburst-annotation").css("opacity") === "1") {
-            //     $('html, body').animate({scrollTop: $('#flowchart-wrapper').offset().top }, 'slow');
-            // }
-            // // If at joint between flowchart and conclusion, be specific
-            // else if ($("#last-flowchart-annotation").css("opacity") === "1") {
-            //     $('html, body').animate({scrollTop: $('#end-text-block').offset().top - 100 }, 'slow');
-            // }
-            // else {
-            //     $('html, body').animate({scrollTop: `+=${$(".mobile-spacer").css("height")}`}, 'fast');
-            // }
-
-            // scrollSpeed = 'fast';
-        // }
-
-        // If on Desktop, arrow stays at the top and only needs this one trigger
-        // else {
-            $('html, body').animate({scrollTop: $('#first-annotation').offset().top + 150}, 'slow');
-        // }
-    });
-
-    // If on mobile, the down arrow is fixed at the bottom of the screen and can be used to move from section to section the whole time
-    // It should also be a little larger and re-centered
-    if (phoneBrowsing === true) {
-        $(".downArrow img")
-            .attr("width", "70px")
-            .attr("height", "70px");
-
-        // $(".downArrow")
-        //     .css("text-align", "center")
-        //     .css("position", "fixed")
-        //     .css("left", `calc(50% - 35px)`);
-    }
-}
-
-
-
-// Window re-size/scroll functions
-function setWindowFunctions() {
-    $(window)
-        .resize(function () {
-            // If window is re-sized to above/below mobile cutoff, refresh the page
-            if ((phoneBrowsing === true && window.innerWidth > phoneBrowsingCutoff)
-                || (phoneBrowsing === false && window.innerWidth < phoneBrowsingCutoff)) {
-
-                this.location.reload(false);
-            }
-
-        })
-        // Hide the scroll arrow if the user passes a certain scroll height (past the top of the sunburst on Desktop,
-        // a little before the end text on mobile)
-        .scroll(function () {
-            let arrowFadeHeight = (phoneBrowsing === true) ?
-                $('#end-text-block').offset().top - 110 :
-                $('#sunburst-wrapper').offset().top;
-
-            if ($(window).scrollTop() > arrowFadeHeight) {
-                $(".downArrow")
-                    .css("opacity", 0.0);
-                // .fadeTo( "fast" , 0);
-            }
-            else {
-                $(".downArrow")
-                    .css("opacity", 1.0);
-                // .fadeTo( "fast" , 1);
-            }
-        });
-}
-
-
 // Initialize timeline slider
 function initSliders() {
 
@@ -227,8 +147,6 @@ function main() {
     //     .css("opacity", 0.2);
 
     determinePhoneBrowsing();
-    setScrollArrow();
-    // setWindowFunctions();
     
     Promise.all(promises).then(function(allData) {
 

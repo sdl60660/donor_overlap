@@ -28,9 +28,11 @@ NodeLink.prototype.initVis = function() {
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
         .attr("class", "d3-tip")
-        .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle + vis.degreeOffset))
-        .offset(d => d.nodeAngle + vis.degreeOffset > 170 || (d.nodeAngle + vis.degreeOffset < 10 && (d.nodeAngle + vis.degreeOffset) > -10) ? [-25, 0] : d.nodeAngle + vis.degreeOffset > 0 ? [20,0] : [-10,0])
+        .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle))
+        .offset(d => d.nodeAngle > 170 || (d.nodeAngle < 10 && d.nodeAngle > -10) ? [-25, 0] : d.nodeAngle > 0 ? [20, 0] : [-10, 0])
         .html(function(d) {
+            console.log(d.nodeAngle, vis.degreeOffset, (d.nodeAngle - vis.degreeOffset))
+
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
             outputString += `<span>Known Donors:</span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
@@ -348,7 +350,7 @@ NodeLink.prototype.updateVis = function() {
             .classed('noselect', true)
             .style("text-anchor","start")
             .style("opacity", 0)
-            .style("font-size", "18px")
+            .style("font-size", "20px")
             .attr("dy", "1.1em")
             .attr("direction", d => d.direction)
             .attr("nodeAngle", d => d.nodeAngle)
@@ -529,7 +531,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
     const ringCircumference = linkDistance*2*Math.PI;
     const nodeSpace = ringCircumference / vis.numOuterNodes;
 
-    let nodePadding = 25;
+    let nodePadding = 30;
 
     if ( nodeSpace > 2*(vis.minCircleRadius + nodePadding) ) {
         vis.circumferenceCoordinateSet = circlePlotCoordinates(linkDistance, [vis.width / 2, vis.height / 2], vis.numOuterNodes, vis.degreeOffset );
