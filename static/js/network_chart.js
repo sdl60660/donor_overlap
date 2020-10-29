@@ -107,7 +107,7 @@ NetworkChart.prototype.wrangleData = function() {
     const includedCandidates = vis.nodeData.map(d => d.id);
 
     vis.selectedOverlapLinks = _.cloneDeep(networkLinks.slice().filter( d => {
-        return +d.pct_val > overlapThresholdNetwork &&
+        return d.pct_val > overlapThresholdNetwork &&
             (includedCandidates.includes(d.target) && includedCandidates.includes(d.source));
     }));
 

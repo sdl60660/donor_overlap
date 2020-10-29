@@ -154,18 +154,13 @@ function main() {
         overlapNodes = allData[1];
         candidateIdNames = allData[2];
 
-        networkLinks = _.cloneDeep(overlapLinks);
-        networkNodes = _.cloneDeep(overlapNodes);
-
         overlapLinks.forEach(link => {
             link.pct_val = +link.pct_val;
             link.raw_val = +link.raw_val;
         });
 
-        // networkLinks.forEach(link => {
-        //     link.pct_val = +link.pct_val;
-        //     link.raw_val = +link.raw_val;
-        // })
+        networkLinks = _.cloneDeep(overlapLinks);
+        networkNodes = _.cloneDeep(overlapNodes);
 
         $(".loadring-container")
             .hide();
