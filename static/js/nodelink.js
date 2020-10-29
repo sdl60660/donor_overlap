@@ -187,6 +187,7 @@ NodeLink.prototype.wrangleData = function() {
             // || (includedCandidates.includes(d.source.id))
         );
 
+
     vis.directionalLinks.forEach(function(d) {
         d.direction = d.source === vis.centerNodeId ?
             "outbound" :
@@ -201,6 +202,8 @@ NodeLink.prototype.wrangleData = function() {
             d.y1 = vis.height / 2;
         }
     });
+
+    console.log(includedCandidates, vis.directionalLinks);
 
     vis.overlapNodes = overlapNodes.slice().filter(d => includedCandidates.includes(d.id) || d.id === vis.centerNodeId);
     vis.numOuterNodes = vis.overlapNodes.length - 1;
@@ -541,7 +544,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
         const numRings = Math.ceil((nodeDiameter * vis.numOuterNodes) / ringCircumference);
 
         // const numRings = Math.ceil(ringCircumference / (2*vis.minCircleRadius + 8));
-        const baseRadius = linkDistance - 50;
+        const baseRadius = linkDistance - 100;
 
         vis.circumferenceCoordinateSet = [];
         for(let i=0; i<numRings; i++) {
@@ -554,7 +557,7 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
             }
 
             vis.circumferenceCoordinateSet = vis.circumferenceCoordinateSet
-                .concat( circlePlotCoordinates((baseRadius + i*100), [vis.width / 2, vis.height / 2], chunkSize), vis.degreeOffset );
+                .concat( circlePlotCoordinates((baseRadius + i*150), [vis.width / 2, vis.height / 2], chunkSize, vis.degreeOffset ));
         }
 
     }
