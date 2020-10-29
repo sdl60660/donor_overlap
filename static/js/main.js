@@ -14,7 +14,7 @@ let overlapThreshold = 8;
 let featuredCandidateId = "H8NY15148";
 
 
-let overlapThresholdNewtork = 33;
+let overlapThresholdNetwork = 33;
 let minDonorCountNetwork = 30000;
 
 const partyColor = d3.scaleOrdinal()
@@ -89,10 +89,10 @@ function initSliders() {
     $("#min-overlap-network").on('input', () => {
         const range = document.getElementById('min-overlap-network');
 
-        overlapThresholdNewtork = range.value;
+        overlapThresholdNetwork = range.value;
         networkChart.wrangleData();
 
-        updateSliderLabel("min-overlap-network", overlapThresholdNewtork);
+        updateSliderLabel("min-overlap-network", overlapThresholdNetwork);
     });
 
 
@@ -106,7 +106,7 @@ function initSliders() {
     });
 
     updateSliderLabel("min-overlap-threshold", overlapThreshold);
-    updateSliderLabel("min-overlap-network", overlapThresholdNewtork);
+    updateSliderLabel("min-overlap-network", overlapThresholdNetwork);
     updateSliderLabel("min-donor-threshold-network", minDonorCountNetwork);
 }
 
@@ -161,6 +161,11 @@ function main() {
             link.pct_val = +link.pct_val;
             link.raw_val = +link.raw_val;
         });
+
+        // networkLinks.forEach(link => {
+        //     link.pct_val = +link.pct_val;
+        //     link.raw_val = +link.raw_val;
+        // })
 
         $(".loadring-container")
             .hide();

@@ -99,13 +99,15 @@ NetworkChart.prototype.wrangleData = function() {
     // vis.donorThreshold = 30000;
     // vis.overlapThreshold = 31;
 
+    // console.log(overlapThresholdNetwork)
+
     vis.nodeData = networkNodes.slice()
-        .filter(d => d.total_donors > minDonorCountNetwork);
+        .filter(d => +d.total_donors > minDonorCountNetwork);
 
     const includedCandidates = vis.nodeData.map(d => d.id);
 
     vis.selectedOverlapLinks = _.cloneDeep(networkLinks.slice().filter( d => {
-        return d.pct_val > overlapThresholdNewtork &&
+        return +d.pct_val > overlapThresholdNetwork &&
             (includedCandidates.includes(d.target) && includedCandidates.includes(d.source));
     }));
 

@@ -31,8 +31,6 @@ NodeLink.prototype.initVis = function() {
         .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle))
         .offset(d => d.nodeAngle > 170 || (d.nodeAngle < 10 && d.nodeAngle > -10) ? [-25, 0] : d.nodeAngle > 0 ? [20, 0] : [-10, 0])
         .html(function(d) {
-            console.log(d.nodeAngle, vis.degreeOffset, (d.nodeAngle - vis.degreeOffset))
-
             let outputString = '<div>';
             outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
             outputString += `<span>Known Donors:</span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
@@ -202,8 +200,6 @@ NodeLink.prototype.wrangleData = function() {
             d.y1 = vis.height / 2;
         }
     });
-
-    console.log(includedCandidates, vis.directionalLinks);
 
     vis.overlapNodes = overlapNodes.slice().filter(d => includedCandidates.includes(d.id) || d.id === vis.centerNodeId);
     vis.numOuterNodes = vis.overlapNodes.length - 1;
