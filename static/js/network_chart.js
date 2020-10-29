@@ -289,7 +289,7 @@ NetworkChart.prototype.updateVis = function() {
             });
         });
 
-    vis.decayVal = 0.0228;
+    vis.decayVal = 0.03;
 
     vis.simulation
         .restart();
