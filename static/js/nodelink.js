@@ -22,14 +22,14 @@ NodeLink.prototype.initVis = function() {
 
     vis.degreeOffset = 17;
     vis.tooltipOrientation = d3.scaleThreshold()
-        .domain([-91, -89, -1, 1, 89, 91, 179])
+        .domain([-91, -89, -1, 1, 89, 91, 180])
         .range(["n", "n", "n", "n", "s", "s", "s", "n"]);
 
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
         .attr("class", "d3-tip")
         .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle))
-        .offset(d => (d.nodeAngle >= 170 || (d.nodeAngle > 0 && d.nodeAngle <= 10)) ? [25,0] : (d.nodeAngle <= 0 && d.nodeAngle > -10) ? [-15, 0] : d.nodeAngle > 0 ? [20, 0] : [-10, 0])
+        .offset(d => (d.nodeAngle >= 170 || (d.nodeAngle > 0 && d.nodeAngle <= 10)) ? [25, 0] : (d.nodeAngle <= 0 && d.nodeAngle > -10) ? [-15, 0] : d.nodeAngle > 0 ? [20, 0] : [-10, 0])
         .html(function(d) {
             console.log(d.nodeAngle);
 
