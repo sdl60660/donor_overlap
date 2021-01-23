@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
 
     <!-- Primary Meta Tags -->
     <title>2020 Donor Overlap</title>
@@ -77,7 +77,7 @@
             </div>
             <br><br>
             <p>
-                Nearly $7 billion has gone to federal election candidates during the 2020 campaign cycle from millions of
+                Nearly $7 billion went to federal election candidates during the 2020 campaign cycle from millions of
                 donors. The increasingly popular ActBlue and WinRed fundraising platforms have made small-dollar donation
                 data public, allowing us to understand much better than in previous cycles not only where money is going, but 
                 also who it is coming from.
@@ -92,35 +92,32 @@
         <div class="col-md-1"></div>
     </div>
     </div>
-{#        <div class="downArrow bounce" style="visibility: hidden">#}
-{#            <img width="40" height="40" alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=" />#}
-{#        </div>#}
 
     <div class="spacer"></div>
 
     <!-- Third Wrapper/Tile -->
     <div class="tile-wrapper" id="nodelink-wrapper" style="margin-top: 8vh; margin-bottom: 20vh; visibility: hidden;">
-    <div class="container" id="nodelink-intro" style="text-align: center; margin: auto;">
-        <h3>Candidate Overlap</h3>
-        <br>
-        <div class="col-md-2"></div>
-        <div class="col-md-8" style="text-align: left">
-            <p>
-                The diagram below shows candidates who share individual donors with the selected candidate in the center.
-                The higher the overlap, the larger the outside candidate's "bubble" is. You can <strong>hover over any
-                bubble for more details</strong> or <strong>double-click on any bubble to switch the center candidate</strong>.
-            </p>
-            <!-- <br>
-            <p>
-                Note that the diagram will filter candidates based on "outbound" overlap (designated with
-                <span id="blue-highlight">blue</span> arrows), meaning it shows the percentage of the selected candidate's
-                donors who donated to the outside candidate. On hover, it will also display "inbound" overlap (designated
-                with the <span id="green-highlight">green</span> arrows), meaning the percentage of the outside candidate's
-                donors who donated to the selected candidate.
-            </p> -->
+        <div class="container tile-intro" id="nodelink-intro">
+            <h3>Candidate Overlap</h3>
+            <br>
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="text-align: left">
+                <p>
+                    The diagram below shows candidates who share individual donors with the selected candidate in the center.
+                    The higher the overlap, the larger the outside candidate's "bubble" is. You can <strong>hover over any
+                    bubble for more details</strong> or <strong>double-click on any bubble to switch the center candidate</strong>.
+                </p>
+                <!-- <br>
+                <p>
+                    Note that the diagram will filter candidates based on "outbound" overlap (designated with
+                    <span id="blue-highlight">blue</span> arrows), meaning it shows the percentage of the selected candidate's
+                    donors who donated to the outside candidate. On hover, it will also display "inbound" overlap (designated
+                    with the <span id="green-highlight">green</span> arrows), meaning the percentage of the outside candidate's
+                    donors who donated to the selected candidate.
+                </p> -->
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
-    </div>
 
     <div class="spacer"></div>
 
@@ -149,10 +146,9 @@
     </div>
 
     <div class="tile-wrapper" id="network-wrapper" style="visibility: hidden;">
-    <div class="container" id="network-tile">
-        <h3>The Big Picture</h3>
-        <br>
-        <div class="row" id="network-intro">
+        <div class="container tile-intro" id="network-intro">
+            <h3>The Big Picture</h3>
+            <br>
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <p style="text-align: left">
@@ -167,8 +163,9 @@
             <div class="col-md-2"></div>
         </div>
 
-        <div class="spacer"></div>
+    <div class="spacer"></div>
 
+    <div class="container viz-tile" id="network-tile">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-4 slider-div">

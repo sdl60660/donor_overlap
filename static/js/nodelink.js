@@ -401,8 +401,6 @@ NodeLink.prototype.updateVis = function() {
                     .attr("r", d => d.radiusVal)
                     .attr("cx", (d) => d.initialX)
                     .attr("cy", (d) => d.initialY)
-                    .attr("cx", (d) => d.initialX)
-                    .attr("cy", (d) => d.initialY)
                     .attr("x", vis.width/2)
                     .attr("y", vis.height/2)
                 ),
@@ -411,8 +409,6 @@ NodeLink.prototype.updateVis = function() {
                 .transition()
                     .duration(transitionDuration)
                     .attr("r", d => d.radiusVal)
-                    .attr("cx", (d) => d.initialX)
-                    .attr("cy", (d) => d.initialY)
                     .attr("cx", (d) => d.initialX)
                     .attr("cy", (d) => d.initialY)
                     .attr("x", vis.width/2)
