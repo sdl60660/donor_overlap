@@ -120,9 +120,7 @@ function wrap(text, width) {
 };
 
 function nodeLinkWrap(text, innerCicleRadius) {
-
-    text.each(function() {
-
+    text.each( function() {
         let text = d3.select(this),
             correspondingLink = text.attr("xlink:href"),
             startOffset = parseInt(text.attr("startOffset")),
@@ -136,7 +134,11 @@ function nodeLinkWrap(text, innerCicleRadius) {
             y = text.attr("y"),
             x = text.attr("x"),
             dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+            tspan = text.text(null)
+                .append("tspan")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("dy", dy + "em");
 
         let path = document.getElementById(correspondingLink.replace("#", ""));
         let pathLength = path.getTotalLength();
@@ -150,7 +152,6 @@ function nodeLinkWrap(text, innerCicleRadius) {
         //     lineOffset = 2;
         // }
         let maxLength = pathLength - buffer - startOffset;
-
 
         let lastLength = -1;
         let newLength = 0;
@@ -168,7 +169,7 @@ function nodeLinkWrap(text, innerCicleRadius) {
                 line = [word];
                 tspan = text.append("tspan")
                     .attr("x", 0)
-                    .attr("dy", lineNumber++ * lineHeight + dy + "em")
+                    .attr("dy", lineNumber * lineHeight + dy + "em")
                     .text(word);
 
                 lastLength = -1;

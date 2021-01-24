@@ -30,9 +30,9 @@ NetworkChart.prototype.initVis = function() {
         .attr("class", "d3-tip")
         .offset([-15, 0])
         .html(function(d) {
-            let outputString = '<div>';
-            outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
-            outputString += `<span>Known Donors: </span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
+            let outputString = '<div class="tip-grid">';
+            outputString += `<div class="tip-grid__title">${d.display_name}</div>`;
+            outputString += `<div>Known Donors: </div> <div>${d3.format(",")(d.total_donors)}</div>`;
 
             outputString += '</div>';
 

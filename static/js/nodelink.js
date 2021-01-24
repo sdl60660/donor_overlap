@@ -33,16 +33,16 @@ NodeLink.prototype.initVis = function() {
         .html(function(d) {
             console.log(d.nodeAngle);
 
-            let outputString = '<div>';
-            outputString += `<div style="text-align: center;"><span><strong>${d.display_name}</strong></span></div><br>`;
-            outputString += `<span>Known Donors:</span> <span style="float: right;">${d3.format(",")(d.total_donors)}</span><br>`;
+            let outputString = '<div class="tip-grid">';
+            outputString += `<div class="tip-grid__title">${d.display_name}</div>`;
+            outputString += `<div class="tip-grid__name">Donors:</div> <div class="tip-grid__number">${d3.format(",")(d.total_donors)}</div>`;
 
             const correspondingLink = vis.selectedOverlapLinks.find((x) => vis.direction === "outbound" ?
                 x.target === d.id :
                 x.source === d.id);
 
             if (typeof correspondingLink !== "undefined") {
-                outputString += `<span>Overlap:</span> <span style="float: right;">${d3.format(",")(correspondingLink.raw_val)}</span><br>`;
+                outputString += `<div class="tip-grid__name">Overlap:</div> <div class="tip-grid__number">${d3.format(",")(correspondingLink.raw_val)}</div>`;
             }
 
             outputString += '</div>';
@@ -51,14 +51,14 @@ NodeLink.prototype.initVis = function() {
         });
     vis.svg.call(vis.tip);
 
-    vis.minCircleRadius = 20;
+    vis.minCircleRadius = 25;
     vis.centerNodeRadiusVal = 85;
     // Scales for node radius and with of line depending on overlap percentage
     vis.circleRadius = d3.scalePow()
         // .domain(d3.extent(overlapLinks, (d) => d.pct_val))
         .domain([1, 45])
-        .range([vis.minCircleRadius, 65])
-        .exponent(1.2);
+        .range([vis.minCircleRadius, 75])
+        .exponent(1.3);
 
     vis.lineWidth = d3.scalePow()
         .domain(d3.extent(overlapLinks, (d) => d.pct_val))
@@ -351,7 +351,6 @@ NodeLink.prototype.updateVis = function() {
             .classed('noselect', true)
             .style("text-anchor","start")
             .style("opacity", 0)
-            .style("font-size", "18px")
             .attr("dy", "1.1em")
             .attr("direction", d => d.direction)
             .attr("nodeAngle", d => d.nodeAngle)
@@ -372,7 +371,14 @@ NodeLink.prototype.updateVis = function() {
                     return "60px";
                 }
             })
-            .style("stroke", (d) => d.direction === "outbound" ? "blue" : "green")
+            // .style("stroke", (d) => d.direction === "outbound" ? "blue" : "green")
+            // .style("stroke", "white")
+            // .style("stroke-width", "3px")
+            // .style("paint-order", "stroke")
+            // .style("font-weight", "bold")
+            .style("font-size", "24px")
+            .style("font-family", "Roboto")
+            .style("fill", (d) => d.direction === "outbound" ? "blue" : "green")
             .text((d) => {
                 return `${d3.format(".1f")(d.pct_val)}% of ${candidateIdNames[d.source]} donors also donated to ${candidateIdNames[d.target]}`
             })
