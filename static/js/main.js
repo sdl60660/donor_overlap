@@ -55,6 +55,7 @@ function determinePhoneBrowsing() {
     if (phoneBrowsing === true) {
         // setDynamicPadding('#sunburst-tile', 1, 7);       // Keep this, but populate with correct element ID and indices
         // setDynamicPadding('#flowchart-tile', 8, 13);     // Keep this, but populate with correct element ID and indices
+        $("#instructions-prompt").text("You can tap any candidates' bubble for more details or switch the center candidate using the dropdown")
     }
 }
 

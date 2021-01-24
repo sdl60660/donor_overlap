@@ -47,17 +47,17 @@ strong {
 }
 
 .viz-tile {
-  position: relative;
-  top: 40px;
-  right: 0;
-  left: 0;
-  margin-right: auto !important;
-  margin-left: auto !important;
-  /*left: 50%;*/
-  /*transform: translate(-50%, -50%);*/
-	margin-top: 20px;
-  /*margin-bottom: 40px;*/
-  /*margin-right: 15px;*/
+    position: relative;
+    top: 40px;
+    right: 0;
+    left: 0;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    margin-top: 20px;
+    /*margin-bottom: 40px;*/
+    /*margin-right: 15px;*/
 }
 
 #network-tile {
@@ -168,42 +168,47 @@ strong {
 
 
 .header {
-  background-color: #f1f1f1;
-  height: 10vh;
-  max-height: 70px;
-  min-height: 45px;
-  display: flex;
+    background-color: #f1f1f1;
+    height: 10vh;
+    max-height: 70px;
+    min-height: 45px;
+    display: flex;
 }
 
 .header .main-site-link {
-  align-self: center;
-  margin-right: 3vw;
-  position: absolute;
-  right: 0vw;
-
+    align-self: center;
+    margin-right: 3vw;
+    position: absolute;
+    right: 0vw;
 }
 
 .header .main-site-link button {
-  background-color: rgba(48, 112, 196, 0.8);
-  color: white;
-  padding: 0.6rem;
-  border-radius: 3px;
-  font-size: 1.5rem;
-  text-decoration: none;
+    background-color: rgba(48, 112, 196, 0.8);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 3px;
+    font-size: 1.5rem;
+    text-decoration: none;
 }
 
  #intro-area > p, #nodelink-intro p, #network-intro p {
      font-size: 16px;
  }
 
+ .d3-tip {
+    min-width: 220px;
+    max-width: 480px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid black;
+    z-index: 100;
+    padding: 12px;
+    line-height: 1;
+}
+
 
 @media (max-width: 1100px) {
-    /*#sections {*/
-        /*width: 0px;*/
-        /*top: 0;*/
-        /*left: 50;*/
-        /*z-index: 50;*/
-    /*}*/
 
     .range-value span {
         font-size: 13px;
@@ -223,16 +228,12 @@ strong {
     }
 
     #nodelink-wrapper {
-      margin-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     #network-wrapper {
         margin-top: 10vh;
     }
-
-    /*.viz-tile {
-        padding-top: 150px;
-    }*/
 
     .container {
         width: 95% !important;
@@ -266,27 +267,18 @@ strong {
      .axis-tip {
          font-size: 14px;
      }
+
+      .d3-tip {
+          font-size: 11px;
+      }
 }
 
 .container {
-	z-index: 2;
+    z-index: 2;
     text-align: center;
     margin: unset;
     /*margin: 0;*/
     /*width: 80%;*/
-}
-
-
-.d3-tip {
-    min-width: 220px;
-    max-width: 480px;
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-    border: 1px solid black;
-    z-index: 100;
-    padding: 12px;
-    line-height: 1;
 }
 
 .icon-img {
@@ -431,37 +423,37 @@ table td {
 /*Load Spinner*/
 
 .lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 120px;
-  height: 120px;
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 120px;
 }
 .lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  margin: 9px;
-  border: 9px solid #444;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #444 transparent transparent transparent;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    margin: 9px;
+    border: 9px solid #444;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #444 transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
+    animation-delay: -0.45s;
 }
 .lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
+    animation-delay: -0.3s;
 }
 .lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+    animation-delay: -0.15s;
 }
 @keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
