@@ -228,6 +228,10 @@ strong {
     justify-self: right;
 }
 
+.tip-grid--network {
+    justify-items: center;
+}
+
 
 @media (max-width: 1100px) {
 
