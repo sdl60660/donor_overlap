@@ -1,7 +1,8 @@
 // d3 = require("d3@5");
 
-NodeLink = function(_parentElement) {
+NodeLink = function(_parentElement, _imagePrefix = '') {
     this.parentElement = _parentElement;
+    this.imagePrefix = _imagePrefix;
 
     this.initVis();
 };
@@ -122,7 +123,7 @@ NodeLink.prototype.initVis = function() {
             // .attr("id", d => d.id)
             .attr("x", 0)
             .attr("y", 0)
-            .attr("xlink:href", d => `/static/images/candidate_images/${d.image_url}`);
+            .attr("xlink:href", d => `${vis.imagePrefix}/static/images/candidate_images/${d.image_url}`);
 
     vis.images = vis.svg.append("g")
         .attr("class", "nodelink-images")
