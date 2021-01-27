@@ -19,6 +19,12 @@ def redirect_to_new_domain():
         urlparts_list[1] = TO_DOMAIN
         return redirect(urlunparse(urlparts_list), code=301)
 
+@app.after_request
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
+
 @app.route('/')	
 def homepage():	
 	return render_template('index.html')	
