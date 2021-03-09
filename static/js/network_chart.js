@@ -1,4 +1,3 @@
-// d3 = require("d3@5");
 
 NetworkChart = function(_parentElement, _imagePrefix = '') {
     this.parentElement = _parentElement;
@@ -28,7 +27,7 @@ NetworkChart.prototype.initVis = function() {
 
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
-        .attr("class", "d3-tip")
+        .attr("class", "d3-tip network-chart-tip")
         .offset([-15, 0])
         .html(function(d) {
             let outputString = '<div class="tip-grid tip-grid--network">';
@@ -40,6 +39,7 @@ NetworkChart.prototype.initVis = function() {
             return outputString
         });
     vis.svg.call(vis.tip);
+    $(window).scroll(() => vis.tip.hide())
 
     vis.minCircleRadius = 20;
     // Scales for node radius and with of line depending on overlap percentage
@@ -215,6 +215,16 @@ NetworkChart.prototype.updateVis = function() {
                 .attr("r", d => vis.circleRadius(d.total_donors))
                 .on("mouseover", (d) => {
                     vis.tip.show(d);
+
+                    if (phoneBrowsing) {
+                        d3.select('.network-chart-tip')
+                            .style('position', 'fixed')
+                            .style('width', "100vw")
+                            .style('bottom', 0)
+                            .style('top', 'unset')
+                            .style('left', 0)
+
+                    }
 
                     vis.svg.selectAll(".straight-link")
                         .style("opacity", 0);

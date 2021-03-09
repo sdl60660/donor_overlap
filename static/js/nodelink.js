@@ -1,4 +1,3 @@
-// d3 = require("d3@5");
 
 NodeLink = function(_parentElement, _imagePrefix = '') {
     this.parentElement = _parentElement;
@@ -12,8 +11,8 @@ NodeLink.prototype.initVis = function() {
     const vis = this;
 
     // Set height/width of viewBox
-    vis.width = 1500;
-    vis.height = 1500;
+    vis.width = 1475;
+    vis.height = 1475;
 
     // Initialize SVG
     vis.svg = d3.select(vis.parentElement)
@@ -28,12 +27,10 @@ NodeLink.prototype.initVis = function() {
 
     // Initialize hover tooltip on nodes
     vis.tip = d3.tip()
-        .attr("class", "d3-tip")
-        .direction((d) => d.id === vis.centerNodeId ? "n" : vis.tooltipOrientation(d.nodeAngle))
+        .attr("class", "d3-tip nodelink-tip")
+        .direction((d) => d.id === vis.centerNodeId || phoneBrowsing ? "n" : vis.tooltipOrientation(d.nodeAngle))
         .offset(d => (d.nodeAngle >= 170 || (d.nodeAngle > 0 && d.nodeAngle <= 10)) ? [25, 0] : (d.nodeAngle <= 0 && d.nodeAngle > -10) ? [-15, 0] : d.nodeAngle > 0 ? [20, 0] : [-10, 0])
         .html(function(d) {
-            console.log(d.nodeAngle);
-
             let outputString = '<div class="tip-grid">';
             outputString += `<div class="tip-grid__title">${d.display_name}</div>`;
             outputString += `<div class="tip-grid__name">Donors:</div> <div class="tip-grid__number">${d3.format(",")(d.total_donors)}</div>`;
@@ -51,6 +48,7 @@ NodeLink.prototype.initVis = function() {
             return outputString
         });
     vis.svg.call(vis.tip);
+    $(window).scroll(() => vis.tip.hide())
 
     vis.minCircleRadius = 25;
     vis.centerNodeRadiusVal = 85;
@@ -436,6 +434,15 @@ NodeLink.prototype.updateVis = function() {
                 .on("mouseover", (d) => {
                     vis.tip.show(d);
 
+                    if (phoneBrowsing) {
+                        d3.select('.nodelink-tip')
+                            .style('position', 'fixed')
+                            .style('width', "100vw")
+                            .style('bottom', 0)
+                            .style('top', 'unset')
+                            .style('left', 0)
+                    }
+
                     if (d.id !== vis.centerNodeId) {
                         vis.svg.selectAll(".straight-link")
                             .style("opacity", 0);
@@ -548,13 +555,15 @@ NodeLink.prototype.getCircleCoordinates = function(linkDistance) {
         const baseRadius = linkDistance - 100;
 
         vis.circumferenceCoordinateSet = [];
-        for(let i=0; i<numRings; i++) {
+        let nodesAccountedFor = 0;
+        for(let i=0; i < numRings; i++) {
             let chunkSize = vis.numOuterNodes / numRings;
             if (i === numRings-1) {
-                chunkSize = Math.ceil(chunkSize);
+                chunkSize = vis.numOuterNodes - nodesAccountedFor;
             }
             else {
                 chunkSize = Math.floor(chunkSize);
+                nodesAccountedFor += chunkSize;
             }
 
             vis.circumferenceCoordinateSet = vis.circumferenceCoordinateSet

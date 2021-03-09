@@ -235,6 +235,10 @@ strong {
 
 @media (max-width: 1100px) {
 
+    .viz-area {
+        padding: unset !important;
+    }
+
     .range-value span {
         font-size: 13px;
 
@@ -293,9 +297,29 @@ strong {
          font-size: 14px;
      }
 
-      .d3-tip {
-          font-size: 11px;
-      }
+    .d3-tip {
+        font-size: 11px;
+        border-radius: unset;
+        border: unset;
+        border-top: 1px solid gray;
+    }
+
+    .tip-grid {
+        padding: 0 2rem;
+    }
+
+    .tip-grid__name {
+        justify-self: center;
+    }
+
+    .tip-grid__number {
+        justify-self: left;
+    }
+
+    /*.tip-grid--network {
+        justify-items: center;
+    }*/
+
 }
 
 .container {
