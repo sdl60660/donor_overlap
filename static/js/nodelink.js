@@ -349,7 +349,6 @@ NodeLink.prototype.updateVis = function() {
             })
             .classed('noselect', true)
             .style("text-anchor","start")
-            .style("opacity", 0)
             .attr("dy", "1.1em")
             .attr("direction", d => d.direction)
             .attr("nodeAngle", d => d.nodeAngle)
@@ -381,7 +380,8 @@ NodeLink.prototype.updateVis = function() {
             .text((d) => {
                 return `${d3.format(".1f")(d.pct_val)}% of ${candidateIdNames[d.source]} donors also donated to ${candidateIdNames[d.target]}`
             })
-            .call(nodeLinkWrap, vis.circleRadius(vis.centerNodeRadiusVal));
+            .call(nodeLinkWrap, vis.circleRadius(vis.centerNodeRadiusVal))
+            .style("display", "none")
 
     // console.log("Appended Link Text 2", performance.now() - vis.start);
 
@@ -451,7 +451,7 @@ NodeLink.prototype.updateVis = function() {
                             .style("opacity", 0.8);
 
                         vis.svg.selectAll(`.textpath-${d.id}`)
-                            .style("opacity", 1.0);
+                            .style("display", "block");
                     }
 
                 })
@@ -465,7 +465,7 @@ NodeLink.prototype.updateVis = function() {
                         .style("opacity", 1);
 
                     vis.svg.selectAll('.textpath')
-                        .style('opacity', 0);
+                        .style('display', 'none');
 
                 })
                 // .on("dblclick", (d) => {
