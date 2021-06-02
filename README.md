@@ -10,3 +10,6 @@ Live project lives here: https://donor-overlap.samlearner.com/
 
 Node-link diagram, showing overlap details for a particular candidate:
 ![First node-link diagram, showing overlap details for particular candidates](https://github.com/sdl60660/donor_overlap/blob/9300a46d5789ac2470919c3f002e9c8ebbbf8f8e/static/images/display_image.png)
+
+Force-directed graph, showing the big picture. Candidates with links have donor overlap above a threshold. Distance on the graph more-or-less implictly represents donor similarity, forming clusters of candidates:
+![Second diagram. A force-directed graph showing the big picture with links between all candidates over a given donor threshold](https://github.com/sdl60660/donor_overlap/blob/cb3f5d4bed8f9857bf1605a666cc65557220f694/static/images/second_diagram_display.png)
