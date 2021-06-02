@@ -6,6 +6,7 @@ I've joined donor data from the FEC, as well as ProPublica's FEC Itemizer ActBlu
 
 Live project lives here: https://donor-overlap.samlearner.com/
 
-### Diagrams
+## Diagrams
 
+Node-link diagram, showing overlap details for a particular candidate:
 ![First node-link diagram, showing overlap details for particular candidates](https://github.com/sdl60660/donor_overlap/blob/9300a46d5789ac2470919c3f002e9c8ebbbf8f8e/static/images/display_image.png)
