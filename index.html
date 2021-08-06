@@ -63,34 +63,44 @@
 
     <!-- Load Wheel -->
     <div class="loadring-container" style="text-align: center">
-        <div class="lds-ring" style="margin-top: 30vh;"><div></div><div></div><div></div><div></div></div>
+        <div class="lds-ring" style="margin-top: 30vh;">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 
     <!-- Intro Text Wrapper/Tile -->
     <div class="tile-wrapper" id="intro-wrapper" style="visibility: hidden">
-    <div class="container viz-tile" id="intro-tile" style="text-align: center; margin: auto;">
-        <div class="col-md-1"></div>
-        <div class="col-md-10" id="intro-area" style="text-align:left;">
-            <!--<h2>This is some filler intro text. There's nothing on this tile yet. Scroll down.<h2>-->
-            <div style="text-align: center">
-                <h1><strong>Which 2020 Candidates Shared Donors?</strong></h1>
+        <div class="container viz-tile" id="intro-tile" style="text-align: center; margin: auto;">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="intro-area" style="text-align:left;">
+                <!--<h2>This is some filler intro text. There's nothing on this tile yet. Scroll down.<h2>-->
+                <div style="text-align: center">
+                    <h1><strong>Which 2020 Candidates Shared Donors?</strong></h1>
+                </div>
+                <br><br>
+                <p>
+                    Nearly $7 billion went to federal election candidates during the 2020 campaign cycle from millions
+                    of
+                    donors. The increasingly popular ActBlue and WinRed fundraising platforms have made small-dollar
+                    donation
+                    data public, allowing us to understand much better than in previous cycles not only where money is
+                    going, but
+                    also who it is coming from.
+                </p>
+                <br>
+                <p>
+                    More of that money than ever is coming in the form of small-dollar donations and many of those
+                    donors are contributing
+                    to multiple campaigns. By looking at where donors' money has overlapped, we can better understand
+                    overlaps in support between candidates who will never share a ballot and may never share voting
+                    records in congress.
+                </p>
             </div>
-            <br><br>
-            <p>
-                Nearly $7 billion went to federal election candidates during the 2020 campaign cycle from millions of
-                donors. The increasingly popular ActBlue and WinRed fundraising platforms have made small-dollar donation
-                data public, allowing us to understand much better than in previous cycles not only where money is going, but 
-                also who it is coming from.
-            </p>
-            <br>
-            <p>
-                More of that money than ever is coming in the form of small-dollar donations and many of those donors are contributing
-                to multiple campaigns. By looking at where donors' money has overlapped, we can better understand
-                overlaps in support between candidates who will never share a ballot and may never share voting records in congress.
-            </p>
+            <div class="col-md-1"></div>
         </div>
-        <div class="col-md-1"></div>
-    </div>
     </div>
 
     <div class="spacer"></div>
@@ -103,9 +113,11 @@
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align: left">
                 <p>
-                    The diagram below shows candidates who share individual donors with the selected candidate in the center.
-                    The higher the overlap, the larger the outside candidate's "bubble" is. <span id="instructions-prompt">You can hover over any
-                    bubble for more details or double-click on any bubble to switch the center candidate</span>.
+                    The diagram below shows candidates who share individual donors with the selected candidate in the
+                    center.
+                    The higher the overlap, the larger the outside candidate's "bubble" is. <span
+                        id="instructions-prompt">You can hover over any
+                        bubble for more details or double-click on any bubble to switch the center candidate</span>.
                 </p>
                 <!-- <br>
                 <p>
@@ -119,30 +131,30 @@
             <div class="col-md-2"></div>
         </div>
 
-    <div class="spacer"></div>
+        <div class="spacer"></div>
 
-    <div class="container viz-tile" id="nodelink-tile">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5" id="candidate-select">
-                <span style="margin-bottom: 5px;">Candidate:</span>
-                <select id="overlap-nodelink-candidate-select" class="fstdropdown-select candidate-select"></select>
+        <div class="container viz-tile" id="nodelink-tile">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5" id="candidate-select">
+                    <span style="margin-bottom: 5px;">Candidate:</span>
+                    <select id="overlap-nodelink-candidate-select" class="fstdropdown-select candidate-select"></select>
+                </div>
+                <div class="col-md-5 slider-div">
+                    <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
+                    <div class="range-value" id="min-overlap-threshold-slider-label"></div>
+                    <input type="range" id="min-overlap-threshold" name="overlap" min="3" max="40" step="1" value="8">
+                </div>
+                <div class="col-md-1"></div>
             </div>
-            <div class="col-md-5 slider-div">
-                <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
-                <div class="range-value" id="min-overlap-threshold-slider-label"></div>
-                <input type="range" id="min-overlap-threshold" name="overlap" min="3" max="40" step="1" value="8">
+            <div class="row" style="margin-top: 4vh">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 viz-area">
+                    <div class="row" id="nodelink-area" style="max-height: 67vh"></div>
+                </div>
+                <div class="col-md-1"></div>
             </div>
-            <div class="col-md-1"></div>
         </div>
-        <div class="row" style="margin-top: 4vh">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 viz-area">
-                <div class="row" id="nodelink-area" style="max-height: 67vh"></div>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
-    </div>
     </div>
 
     <div class="tile-wrapper" id="network-wrapper" style="visibility: hidden;">
@@ -152,104 +164,128 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <p style="text-align: left">
-                    Here, all candidates above a minimum number of donors are displayed. Links are added between candidates
+                    Here, all candidates above a minimum number of donors are displayed. Links are added between
+                    candidates
                     with high donor overlap, creating natural clusters between and within parties.
                 </p>
                 <p style="text-align: left">
-                    Note than on the Republican side, every candidate above the minimum donor threshold is linked to President Trump. While the majority of 
-                    Democratic campaigns are linked to Vice President Joe Biden's campaign, progressives on the left wing of the Democratic Party form a somewhat separate cluster centered around Sen. Bernie Sanders, with a few candidates such as Rep. Ayanna Pressley and Sen. Ed Markey forming a bridge between the two clusters.
+                    Note than on the Republican side, every candidate above the minimum donor threshold is linked to
+                    President Trump. While the majority of
+                    Democratic campaigns are linked to Vice President Joe Biden's campaign, progressives on the left
+                    wing of the Democratic Party form a somewhat separate cluster centered around Sen. Bernie Sanders,
+                    with a few candidates such as Rep. Ayanna Pressley and Sen. Ed Markey forming a bridge between the
+                    two clusters.
                 </p>
             </div>
             <div class="col-md-2"></div>
         </div>
 
-    <div class="spacer"></div>
+        <div class="spacer"></div>
 
-    <div class="container viz-tile" id="network-tile">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-4 slider-div">
-                <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
-                <div class="range-value" id="min-overlap-network-slider-label"></div>
-                <input type="range" id="min-overlap-network" name="overlap-network" min="5" max="80" step="1" value="33">
+        <div class="container viz-tile" id="network-tile">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4 slider-div">
+                    <span style="margin-bottom: 5px;">Min. Donor Overlap:</span>
+                    <div class="range-value" id="min-overlap-network-slider-label"></div>
+                    <input type="range" id="min-overlap-network" name="overlap-network" min="5" max="80" step="1"
+                        value="33">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4 slider-div">
+                    <span style="margin-bottom: 5px;">Min. Donor Count:</span>
+                    <div class="range-value" id="min-donor-threshold-network-slider-label"></div>
+                    <input type="range" id="min-donor-threshold-network" name="donor-count-network" min="20000"
+                        max="200000" step="10000" value="30000">
+                </div>
+                <div class="col-md-1"></div>
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4 slider-div">
-                <span style="margin-bottom: 5px;">Min. Donor Count:</span>
-                <div class="range-value" id="min-donor-threshold-network-slider-label"></div>
-                <input type="range" id="min-donor-threshold-network" name="donor-count-network" min="20000" max="200000" step="10000" value="30000">
+            <div class="row" style="margin-top: 4vh;">
+                <div class="col-md-12 viz-area">
+                    <div id="network-area" style="max-height: 80vh"></div>
+                </div>
             </div>
-            <div class="col-md-1"></div>
         </div>
-        <div class="row" style="margin-top: 4vh;">
-            <div class="col-md-12 viz-area">
-                <div id="network-area" style="max-height: 80vh"></div>
-            </div>
-        </div>
-    </div>
     </div>
 
     <!-- Conclusion Text  -->
     <!--<div class="container">-->
-        <!--<div class="col-md-1"></div>-->
-        <!--<div class="col-md-10" id="end-text-block">-->
-            <!--<p></p>-->
-        <!--</div>-->
-        <!--<div class="col-md-1"></div>-->
+    <!--<div class="col-md-1"></div>-->
+    <!--<div class="col-md-10" id="end-text-block">-->
+    <!--<p></p>-->
+    <!--</div>-->
+    <!--<div class="col-md-1"></div>-->
     <!--</div>-->
 
     <div class="spacer" style="min-height: 5vh"></div>
 
     <!-- Footer  -->
-    <div class="container footer" style="text-align:left; max-width: 950px; z-index: 200; margin: auto; visibility: hidden;">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <hr>
-                <br>
-                <p><strong>Visualization by <a target="_blank" href="http://www.samlearner.com/">Sam Learner</a></strong> | <a target="_blank" href="mailto:learnersd@gmail.com"><img class="icon-img" src="/static/images/email.svg"></a> | <a target="_blank" href="https://twitter.com/sam_learner"><img class="icon-img" src="/static/images/twitter.svg"></a> | <a target="_blank" href="https://github.com/sdl60660"><img class="icon-img" src="/static/images/github.png"></a></p>
-                <p>Code and data for this project lives <a target="_blank" href="https://github.com/sdl60660/donor_overlap">here</a>. You can check out a companion project on donor demographics <a target="_blank" href="https://bit.ly/2020-donor-demographics">here</a>.</p>
-                
-                <!--<p><strong>Further Reading</strong></p>-->
-                <!--<ul style="margin-left:-20px;">-->
-                    <!--<li><a href=""></a></li>-->
-                    <!--<li><a href=""></a></li>-->
-                    <!--<li><a href=""></a></li>-->
-                <!--</ul>-->
-                <!--<br>-->
-                <p><strong>Notes</strong></p>
-                <p>
-                    Contribution data runs through 10/15/2020.
-                <p>
-                <p>
-                    Unique donors are determined using a combination of first name,
-                    last name and zipcode. This creates the possibility of both false positives (two Jane Smiths in the
-                    same zipcode) and false negatives (Jonathan Smith sometimes donates as Jon Smith, or Jon Smith moves
-                    homes during the election cycle). Others who have worked with donor data sometimes require a matching
-                    employer name as well. This drastically lowers the chance of a false positive (it's very unlikely that
-                    there are two Jane Smiths living in the same zipcode with the same employer), but creates many more false
-                    negatives (Jon Smith might change jobs mid-election cycle or he might mark his employer as "Smith High School"
-                    on one donation and "Smith H.S." on another). On balance requiring a matching employer felt like too stringent 
-                    of a requirement that would lead to missing too many donor overlaps. As it is, the analysis very likely 
-                    underrepresents the amount of overlap due to false negatives, but it misses them uniformly, across candidates.
-                <p>
-                <p>
-                    The use of the WinRed fundraising platform among Republican candidates is relatively new and still
-                    less prevalent than the ActBlue platform among Democratic candidates. Since much of the small donor (<$200)
-                    data comes from the platforms' filings, GOP candidates generally have fewer <i>identified</i> donors
-                    than Democratic candidates. Even among candidates who have adopted these platforms,
-                    many small transactions take place outside and the campaigns are only required to report contributions
-                    from donors who give more at least $200 in aggregate. This means we don't have a true donor count for any
-                    campaign, but we can generally get much closer for Democratic ones.
-                </p>
-                <br>
-                <p><strong>Sources</strong></p>
-                <p>
-                    FEC, ProPublica (for itemized <a href="https://projects.propublica.org/itemizer/committee/C00401224/2020">ActBlue</a>, <a href="https://projects.propublica.org/itemizer/committee/C00694323/2020">WinRed</a> receipts)
-                </p>
-                <!-- <p>Last Updated: July 2020</p> -->
+    <div class="container footer"
+        style="text-align:left; max-width: 950px; z-index: 200; margin: auto; visibility: hidden;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <hr>
+            <br>
+            <p><strong>Visualization by <a target="_blank" href="http://www.samlearner.com/">Sam Learner</a></strong> |
+                <a target="_blank" href="mailto:learnersd@gmail.com"><img class="icon-img"
+                        src="/static/images/email.svg"></a> | <a target="_blank"
+                    href="https://twitter.com/sam_learner"><img class="icon-img" src="/static/images/twitter.svg"></a> |
+                <a target="_blank" href="https://github.com/sdl60660"><img class="icon-img"
+                        src="/static/images/github.png"></a></p>
+            <p>Code and data for this project lives <a target="_blank"
+                    href="https://github.com/sdl60660/donor_overlap">here</a>. You can check out a companion project on
+                donor demographics <a target="_blank" href="https://bit.ly/donor-demographics-direct">here</a>.</p>
 
-            </div>
-            <div class="col-md-1"></div>
+            <!--<p><strong>Further Reading</strong></p>-->
+            <!--<ul style="margin-left:-20px;">-->
+            <!--<li><a href=""></a></li>-->
+            <!--<li><a href=""></a></li>-->
+            <!--<li><a href=""></a></li>-->
+            <!--</ul>-->
+            <!--<br>-->
+            <p><strong>Notes</strong></p>
+            <p>
+                Contribution data runs through 10/15/2020.
+            <p>
+            <p>
+                Unique donors are determined using a combination of first name,
+                last name and zipcode. This creates the possibility of both false positives (two Jane Smiths in the
+                same zipcode) and false negatives (Jonathan Smith sometimes donates as Jon Smith, or Jon Smith moves
+                homes during the election cycle). Others who have worked with donor data sometimes require a matching
+                employer name as well. This drastically lowers the chance of a false positive (it's very unlikely that
+                there are two Jane Smiths living in the same zipcode with the same employer), but creates many more
+                false
+                negatives (Jon Smith might change jobs mid-election cycle or he might mark his employer as "Smith High
+                School"
+                on one donation and "Smith H.S." on another). On balance requiring a matching employer felt like too
+                stringent
+                of a requirement that would lead to missing too many donor overlaps. As it is, the analysis very likely
+                underrepresents the amount of overlap due to false negatives, but it misses them uniformly, across
+                candidates.
+            <p>
+            <p>
+                The use of the WinRed fundraising platform among Republican candidates is relatively new and still
+                less prevalent than the ActBlue platform among Democratic candidates. Since much of the small donor (
+                <$200) data comes from the platforms' filings, GOP candidates generally have fewer <i>identified</i>
+                    donors
+                    than Democratic candidates. Even among candidates who have adopted these platforms,
+                    many small transactions take place outside and the campaigns are only required to report
+                    contributions
+                    from donors who give more at least $200 in aggregate. This means we don't have a true donor count
+                    for any
+                    campaign, but we can generally get much closer for Democratic ones.
+            </p>
+            <br>
+            <p><strong>Sources</strong></p>
+            <p>
+                FEC, ProPublica (for itemized <a
+                    href="https://projects.propublica.org/itemizer/committee/C00401224/2020">ActBlue</a>, <a
+                    href="https://projects.propublica.org/itemizer/committee/C00694323/2020">WinRed</a> receipts)
+            </p>
+            <!-- <p>Last Updated: July 2020</p> -->
+
+        </div>
+        <div class="col-md-1"></div>
     </div>
 
 
@@ -260,7 +296,8 @@
     <script src="/static/bower_components/chosen/chosen.jquery.min.js"></script>
     <script src="/static/js/d3.min.js"></script>
     <script src="/static/js/d3-tip.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="/static/js/fstdropdown.min.js"></script>
     <script src="static/js/lodash.js"></script>
     <!--<script src="static/js/d3plus.full.min.js"></script>-->
@@ -273,9 +310,5 @@
     <script src="/static/js/main.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
